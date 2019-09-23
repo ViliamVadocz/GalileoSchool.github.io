@@ -1,3 +1,7 @@
+
+# Created by https://www.gitignore.io/api/macos,windows,sublimetext,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=macos,windows,sublimetext,visualstudiocode
+
 ### macOS ###
 # General
 .DS_Store
@@ -97,3 +101,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# End of https://www.gitignore.io/api/macos,windows,sublimetext,visualstudiocode
