@@ -1,0 +1,22 @@
+{
+  "name": "galileoschool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "build": "build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalileoSchool/GalileoSchool.github.io.git"
+  },
+  "author": "GALILEO SCHOOL, s.r.o.",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/GalileoSchool/GalileoSchool.github.io/issues"
+  },
+  "homepage": "https://github.com/GalileoSchool/GalileoSchool.github.io#readme",
+  "dependencies": {
+    "handlebars": "^4.3.0"
+  }
+}
