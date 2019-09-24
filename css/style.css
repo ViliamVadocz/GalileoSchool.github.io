@@ -1,10 +1,28 @@
-ul {
-    list-style-type: none;
+body{
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
-li a {
-    display: block;
-    width: 60px
+div #navbar {
+    background-color: rgba(47, 0, 255, 0.678);/* Choose colors*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-top: 0;
+    width: 70%;
+}
+
+/* #navbar li{
+    padding: 1em 5em 1em 5em;
+    border: 2px solid black;
+}
+
+#navbar li:hover {
+    cursor: pointer;
+} */
+
+#navbar a{
+    text-decoration: none;
+    color: Black;
 }
