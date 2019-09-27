@@ -2,27 +2,54 @@
 <html>
 
 <head>
-	<script src="js/includeHTML.js"></script>
-
-	<link rel="stylesheet" href="css/style.css">
 
 	<meta charset="utf-8"> <!--With this meta tag we are telling the browser what character set we will be using on our web-page (It's crucial for the Slovak diacritic to work, this is because ASCII the default character set doesn't include the weird Slovak symbols like ´ or ô or ˇ etc.) You can read more about this at [https://www.w3schools.com/html/html_charset.asp] -->
 	<title>GALILEO - súkromná základná anglická jazyková škola / angličtina / private primary English language school</title> <!--With this title tag we set the tab text to our custom text, else it would just show the name of the file ex. index.html or index.php or home.html etc. -->
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 	<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="css/nav_style.css">
+	<!-- End of Styles -->
+
+	<!-- Scripts -->
+	<script src="js/includeHTML.js"></script>
+	<!--End of Scripts-->
+
 </head>
 
 <body>
-	<div w3-include-html="navigation.html"></div>
-
-	<main>
-		<h1>Galileo School</h1>
-		<p>Work in progress... Check back later!</p>
-	</main>
-
+	<!--<div w3-include-html="navigation.html"></div>
 	<script>
-		includeHTML();
-	</script>
+			includeHTML();
+	</script>-->
+
+	<header>
+			<nav>
+				<div class="nav-phone">
+					<a href="#" id="nav-btn" class="nav-phone toggle"><img src="images/menu.png"></a>
+				</div>
+				<div id="nav-desk" class="nav-desk">
+					<ul class="navbar">
+						<li onclick="location.href='#'" class="nav-elem">Lorem</li>
+						<li onclick="location.href='#'" class="nav-elem">Ipsum</li>
+						<li onclick="location.href='#'" class="nav-elem">Foo</li>
+						<li onclick="location.href='#'" class="nav-elem">Bar</li>
+						<li onclick="location.href='#'" class="nav-elem">Etis</li>
+						<li onclick="location.href='#'" class="nav-elem">Spiritus</li>
+						<li onclick="location.href='#'" class="nav-elem">Santes</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+	<div class="content">
+		<main>
+			<h1>Galileo School</h1>
+			<p>Work in progress... Check back later!</p>
+		</main>
+	</div>
+	<script src="js/navigation.js"></script>
 </body>
 
 </html>
