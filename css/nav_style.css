@@ -142,7 +142,7 @@ body{
         border-bottom: 1px solid black;
         position: relative;
         background-color: inherit;
-        left: 0.5%;
+        width: 99%;
     }
 
     .nav-desk li:hover{
