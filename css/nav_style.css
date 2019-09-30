@@ -47,17 +47,26 @@
     list-style-type: none;
 }
 
+#nav-btn{
+    background-color:rgba(233, 233, 233, 0.849);
+    padding: 1%;
+    padding-bottom: 0.5%;
+}
+
 #nav-btn:hover{
     cursor: pointer;
+    background-color: #6e6e6e;
 }
 
 .content{
     z-index: 0;
+    padding: 1em;
+    text-align: center;
 }
 
 .nav-phone .toggle > img{
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
 }
 
 .blur {
@@ -67,7 +76,49 @@
 body{
     padding: 0;
     margin: 0;
-    height: 2200px;
+    /*height: 2200px;*/
+}
+
+.active-nav-btn{
+    background-color: rgba(83, 83, 83, 0.836) !important;
+}
+
+@media only screen and (min-width: 480px){
+
+    .nav-phone .toggle > img{
+        width: 36px;
+        height: 36px;
+    }
+
+}
+
+@media only screen and (max-width: 393px){
+    .nav-phone{
+        position: relative;
+        margin: auto;
+        right: unset !important;
+        width: 36px;
+        height: 36px;
+    }
+
+    #nav-btn{
+        background-color: #d1d1d1de;
+        padding: 15%;
+    }
+
+    .nav-desk > ul{
+        width: 100%;
+        left: unset !important;
+        margin-top: 3.25%;
+        padding-bottom: 3%;
+        padding-top: 3%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .nav-desk li{
+        margin: auto;
+        text-align: center;
+    }
 }
 
 @media screen and (min-width: 740px) {
