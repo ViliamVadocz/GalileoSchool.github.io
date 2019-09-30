@@ -1,3 +1,5 @@
+/* This is the default style that will be used, in-case there are no media queries this is the default style*/
+/* I like to start with the mobile viewport first as my base and then just expand on that code using queries etc.*/
 .show{
     display: block !important;
 }
@@ -83,6 +85,8 @@ body{
     background-color: rgba(83, 83, 83, 0.836) !important;
 }
 
+/* This is a query that tells the browser what style to use in case its width is > or = to 480px */
+/* AKA present mobile devices such as IphoneX or its alternatives */
 @media only screen and (min-width: 480px){
 
     .nav-phone .toggle > img{
@@ -92,6 +96,8 @@ body{
 
 }
 
+/* This is a query that tells the browser what style to use in case its width is < or = to 393px */
+/* AKA small-screened mobile devices */
 @media only screen and (max-width: 393px){
     .nav-phone{
         position: relative;
@@ -121,6 +127,8 @@ body{
     }
 }
 
+/* This is a query that tells the browser what style to use in case its width is > or = to 740px */
+/* AKA this is the Desktop Style */
 @media screen and (min-width: 740px) {
     .nav-desk > ul {
         list-style-type: none;
