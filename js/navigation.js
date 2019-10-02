@@ -8,7 +8,11 @@ console.log("Javascript Loaded!");
  * 
  * Difficulty: Easy
 */
-const menuBtn = document.getElementById("nav-btn"); 
+const menuBtn = document.getElementById("nav-btn");
+
+const menuBtnImg = document.getElementById('menu-btn-img');
+var original_attribute_src = menuBtnImg.getAttribute('src');
+var exit_img_src = "images/white-close.png"; 
 
 /** The same as above only now I'm trying to select a different element (in this case it's the menu itself) 
  * 
@@ -37,7 +41,11 @@ window.addEventListener("resize", check_resize, false);
  */
 function toggle_menu(){
     NavMenuDesk.classList.toggle('show');
-    menuBtn.classList.toggle('active-nav-btn');
+    //menuBtn.classList.toggle('active-nav-btn');
+    if(menuBtnImg.getAttribute('src') == original_attribute_src)
+        menuBtnImg.setAttribute('src', exit_img_src);
+    else
+        menuBtnImg.setAttribute('src', original_attribute_src);
     document.querySelector('.content').classList.toggle('blur');/** Here I add blur effect to background when menu is visible, thus making human eye more focused on the menu rather than on the content in the background */
 }
 

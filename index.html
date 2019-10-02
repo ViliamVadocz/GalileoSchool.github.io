@@ -24,8 +24,17 @@
 	<header>
 		<!-- Navigation Bar Starts Here -->
 		<nav>
-			<div class="nav-phone"> <!--This is a box that holds our navigation button for smaller devices-->
-				<li id="nav-btn" class="nav-phone toggle"><img src="images/menu.png"></li> <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
+			<div class="nav-phone">
+				<div class="left">
+					<li id="search" class="nav-phone search"><img src="images/search.png"></li>
+					<!--TODO-->
+					<!--Add Logo url below-->
+					<li id="logo" class="nav-phone logo"><!--<img src="">--></li>
+				</div>
+				<div class="right"> <!--This is a box that holds our navigation button for smaller devices-->
+					<li id="language" class="eng"><img src="images/eng.png"></li>
+					<li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="images/menu.png"></li> <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
+				</div>
 			</div>
 			<div id="nav-desk" class="nav-desk"> <!--This div box holds the actual menu-->
 				<ul class="navbar"> <!--I prefer using ul(unordered list) for the menu structure and flexibility-->
