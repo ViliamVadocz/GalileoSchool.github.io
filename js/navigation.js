@@ -63,3 +63,7 @@ function check_resize(){
             return;
     }
 }
+
+function test(){
+    //Testin
+}
