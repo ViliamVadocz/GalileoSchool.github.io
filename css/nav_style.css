@@ -68,7 +68,16 @@
     list-style-type: none;
 }
 
-#language{
+.nav-phone .language-dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-phone .language-dropdown-content{
+    display: none;
+}
+
+.nav-phone .lang{
     background-color:#e0e0e0;
     padding: 1.5vw;
 }
