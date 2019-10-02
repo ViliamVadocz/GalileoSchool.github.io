@@ -12,7 +12,7 @@ const menuBtn = document.getElementById("nav-btn");
 
 const menuBtnImg = document.getElementById('menu-btn-img');
 var original_attribute_src = menuBtnImg.getAttribute('src');
-var exit_img_src = "images/white-close.png"; 
+var exit_img_src = "images/icons/close.png"; 
 
 /** The same as above only now I'm trying to select a different element (in this case it's the menu itself) 
  * 
@@ -40,8 +40,6 @@ window.addEventListener("resize", check_resize, false);
  * Yeah, blur effect is also added using JavaScript and it's powerful events. 
  */
 function toggle_menu(){
-    NavMenuDesk.classList.toggle('show');
-    //menuBtn.classList.toggle('active-nav-btn');
     if(menuBtnImg.getAttribute('src') == original_attribute_src)
         menuBtnImg.setAttribute('src', exit_img_src);
     else
@@ -61,17 +59,5 @@ function check_resize(){
             document.querySelector('.content').classList.remove('blur');
         else
             return;
-        if(NavMenuDesk.classList.contains('show'))
-            NavMenuDesk.classList.remove('show');
-        else
-            return;
-        if(menuBtn.classList.contains('active-nav-btn'))
-            menuBtn.classList.remove('active-nav-btn');
-        else
-            return;
     }
-}
-
-function Test(){
-    return null;
 }

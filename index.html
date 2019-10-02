@@ -13,7 +13,7 @@
 	<!-- End of Styles -->
 
 	<!-- Scripts -->
-	<script src="js/includeHTML.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!--End of Scripts-->
 
 </head>
@@ -26,14 +26,15 @@
 		<nav>
 			<div class="nav-phone">
 				<div class="left">
-					<li id="search" class="nav-phone search"><img src="images/search.png"></li>
+					<li id="search" class="nav-phone search"><img src="images/icons/search.png"></li>
 					<!--TODO-->
-					<!--Add Logo url below-->
-					<li id="logo" class="nav-phone logo"><!--<img src="">--></li>
+					<!--Fix Logo images-->
+					<li id="logo" class="nav-phone logo"><img src="images/logo.jpg"></li>
+					<li id="title" class="nav-phone title"><img src="images/parse_me.jpg"></li>
 				</div>
 				<div class="right"> <!--This is a box that holds our navigation button for smaller devices-->
-					<li id="language" class="eng"><img src="images/eng.png"></li>
-					<li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="images/menu.png"></li> <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
+					<li id="language" class="nav-phone eng"><img src="images/icons/eng.png"></li>
+					<li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="images/icons/menu.png"></li> <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
 				</div>
 			</div>
 			<div id="nav-desk" class="nav-desk"> <!--This div box holds the actual menu-->
@@ -47,6 +48,7 @@
 					<li onclick="location.href='#'" class="nav-elem">Santes</li>
 				</ul>
 			</div>
+			<script src="js/jquery.js"></script>
 		</nav>
 		<!-- Navigation Bar Ends Here -->
 	</header>
