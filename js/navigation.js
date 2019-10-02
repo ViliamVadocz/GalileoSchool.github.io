@@ -64,6 +64,6 @@ function check_resize(){
     }
 }
 
-function test(){
-    //Testin
+function Test(){
+    return null;
 }
