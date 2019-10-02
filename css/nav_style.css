@@ -74,14 +74,14 @@
 }
 
 .nav-phone .logo > img{
-    width: 9.5vw;
-    height: 9.5vw;
+    width: 8.2vw;
+    height: 8.2vw;
     margin: auto;
 }
 
 .nav-phone .logo {
-    /*padding: 0.5vw;*/
-    padding-inline-start: 1px;
+    padding: 0.5vw;
+    padding-inline-start: 3vw;
 }
 
 .nav-phone .title > img{
