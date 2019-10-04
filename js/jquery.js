@@ -17,10 +17,17 @@ $(document).ready(function () {
   $(langBtn).click(
     function(){
       $('.language-dropdown-content').fadeToggle(200);
+      return;
     });
   
-  
-//Use the code below for the desktop version (It is the hover version)
+  $(document).click(function(){
+    if(!$('.language-dropdown-content').is(":hover") && !$('.language-dropdown-content').is(":hidden") && !$(langBtn).is(":hover"))
+    {
+      $('.language-dropdown-content').fadeOut(200);
+    }
+  });
+
+  //Use the code below for the desktop version (It is the hover version)
 
     /*var langBtn = '#langBtn';
   $(langBtn).hover(function () {
