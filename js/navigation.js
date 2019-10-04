@@ -19,6 +19,7 @@ var exit_img_src = "images/icons/close.png";
  * Difficulty: Easy
 */
 const NavMenuDesk = document.getElementById('nav-desk'); 
+var NavMenu = document.getElementById('Navigation');
 
 /** Adding an Event Listener for an action (in my case it's the click on a button) done on my object, and passing a function that should be carried out when the event occurs.
  * 
@@ -54,10 +55,19 @@ function toggle_menu(){
  * Such as when you leave your menu open on a mobile viewport and you extend your browser to desktop viewport the blur effect will still be active, and that's a big NO NO!
  */
 function check_resize(){
-    if(window.innerWidth >= 740){
+    if(window.innerWidth >= 670){
         if(document.querySelector('.content').classList.contains('blur'))
             document.querySelector('.content').classList.remove('blur');
+        if (window.getComputedStyle(NavMenu).display == "none") {
+            NavMenu.style.display = "flex";
+        }
         else
             return;
+    }
+    else if(window.innerWidth < 670)
+    {
+        if (window.getComputedStyle(NavMenu).display == "flex") {
+            NavMenu.style.display = "none";
+        }
     }
 }
