@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
-/* This is the default style that will be used, in case there are no media queries this is the default style*/
+/* This is the default style that will be used, in case there are no media queries this is the default style */
 
 
-/* I like to start with the mobile viewport first as my base and then just expand on that code using queries etc.*/
+/* I like to start with the mobile viewport first, as it serves as a foundation that I can just expand on using queries etc. */
+
+
+/* nav-desk stands for Navigation-Desktop */
 
 .nav-desk {
     display: block;
@@ -13,12 +16,15 @@
     display: none;
     margin: auto;
     width: 100vw;
+    /* I will be using vw (view-width) units, this is the measure of the browsers content window width */
+    /* Thanks to vw units we can assure ourselves that all things on our webpage will be super responsive, meaning their size/scale will change proportionally to the browser content window width */
     list-style-type: none;
     text-align: center;
     position: fixed;
     background-color: #a60000;
     z-index: 1;
     padding-inline-start: 0;
+    /* This tells the browser that I don't want any padding at the start of the line in my whole unordered list, without this our items inside the ul would be shifted towards right due to this padding value not being 0 */
 }
 
 .nav-desk li {
@@ -56,7 +62,8 @@
     flex-direction: row;
     justify-content: flex-start;
     float: left;
-    z-index: 4;
+    z-index: 1;
+    /* Z-index is a Z-axis on a 3D coordiante plane, therefore it tells the brwoser the order of visibility in which our elements should be ordered, smallest value = all the way in the back and the highest value = all the way in the front */
     list-style-type: none;
 }
 
@@ -68,6 +75,7 @@
     float: right;
     z-index: 4;
     list-style-type: none;
+    /* This tells the browser that we don't want to display the default list bullet points infront of every list item */
 }
 
 .nav-phone .language-dropdown {
@@ -88,6 +96,7 @@
     background-color: #e9e9e9 !important;
     z-index: 10;
     border-radius: 0.25vw;
+    /* This cuts the corners of a square or a rectangle to form an eliptical shape, border-radius: 50% will form a perfect circle */
 }
 
 .nav-phone .language-dropdown-content>li {
@@ -165,10 +174,12 @@ body {
     position: absolute;
     z-index: 10;
     opacity: 0;
+    /* Opacity is the measure of how transparent an element and its background should be */
 }
 
 .nav-phone .search-input:focus {
     opacity: 1 !important;
+    /* !important is a special css attribute that overrides any styles that could possibly clash with it (It's like the Principle of Gymnasium compared to the Teacher of Gymnasium */
 }
 
 
