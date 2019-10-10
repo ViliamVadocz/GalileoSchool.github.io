@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
 /* This is the default style that will be used, in-case there are no media queries this is the default style*/
+
+
 /* I like to start with the mobile viewport first as my base and then just expand on that code using queries etc.*/
-.nav-desk{
+
+.nav-desk {
     display: block;
 }
 
-.nav-desk > ul{
+.nav-desk>ul {
     display: none;
     margin: auto;
     width: 100vw;
@@ -14,22 +17,22 @@
     text-align: center;
     position: fixed;
     background-color: #a60000;
-    padding: 3%;
     z-index: 1;
     padding-inline-start: 0;
 }
 
 .nav-desk li {
     padding: 3vw;
-    /*margin-bottom: 4%;*/
+    margin-bottom: 0.5vw;
+    border-bottom: 1px solid #cccccc;
     text-decoration: none;
     color: white;
-    font-family:'Century Gothic','Futura','Didact Gothic',san-serif;
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     font-size: 4.5vw;
     z-index: 1;
 }
 
-.nav-desk li:last-child{
+.nav-desk li:last-child {
     margin-bottom: 0;
 }
 
@@ -37,9 +40,8 @@
     background-color: #bd0303f8;
     color: #ffffff;
     cursor: pointer;
-    /*transform: scale(1.1);*/
-    /*margin: auto;*/
-    box-shadow: 2px 0px 2px 0px #ffffff;
+    box-shadow: 2px 1px #ffffff;
+    transition: all 0.6s ease;
 }
 
 .nav-phone {
@@ -48,7 +50,7 @@
     justify-content: space-between;
 }
 
-.nav-phone > .left{
+.nav-phone>.left {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -58,7 +60,7 @@
     list-style-type: none;
 }
 
-.nav-phone > .right{
+.nav-phone>.right {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -68,12 +70,24 @@
     list-style-type: none;
 }
 
-.nav-phone .language-dropdown{
+
+/*.nav-phone .language-dropdown{
+    display: flex;
+    flex-direction: column;
+}*/
+
+.nav-phone .language-dropdown {
     display: flex;
     flex-direction: column;
 }
 
-.nav-phone .language-dropdown-content{
+.nav-phone .serach-drop .dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.nav-phone .language-dropdown-content {
     position: absolute;
     display: none;
     top: 10vw;
@@ -82,16 +96,16 @@
     border-radius: 0.25vw;
 }
 
-.nav-phone .language-dropdown-content > li{
+.nav-phone .language-dropdown-content>li {
     background-color: unset;
 }
 
-.nav-phone .lang{
-    background-color:#d6d5d5;
+.nav-phone .lang {
+    background-color: #d6d5d5;
     padding: 1.5vw;
 }
 
-.nav-phone .logo > img{
+.nav-phone .logo>img {
     width: 8.2vw;
     height: 8.2vw;
     margin: auto;
@@ -102,36 +116,34 @@
     padding-inline-start: 2.5vw;
 }
 
-.nav-phone .title > img{
+.nav-phone .title>img {
     width: 50vw;
     margin: auto;
     margin-top: 2vw;
     margin-inline-start: 3vw;
 }
 
-.nav-desk .title{
+.nav-desk .title {
     padding: 4vw;
 }
 
-#nav-btn{
-    background-color:#a60000;
+#nav-btn {
+    background-color: #a60000;
     padding: 1.5vw;
 }
 
-#search{
-    background-color:#cccccc;
+#search {
+    background-color: #cccccc;
     padding: 1.5vw;
 }
 
-
-
-.content{
+.content {
     z-index: 0;
     padding: 1em;
     text-align: center;
 }
 
-.nav-phone > img{
+.nav-phone>img {
     width: 7vw;
     height: 7vw;
 }
@@ -140,19 +152,44 @@
     filter: blur(1px);
 }
 
-body{
+body {
     padding: 0;
     margin: 0;
 }
 
-.active-nav-btn{
+.active-nav-btn {
     background-color: #cccccc !important;
 }
 
-/* This is a query that tells the browser what style to use in case its width is > or = to 740px */
+
+/*.nav-phone .search-dropdown-content{
+    display: none;
+}*/
+
+.nav-phone .search-input {
+    width: 0vw;
+    height: 7.5vw;
+    border: 1px solid #cccccc;
+    background: #eeeeee;
+    padding: 1vw;
+    font-size: 3.5vw;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+}
+
+.nav-phone .search-input:focus {
+    opacity: 1 !important;
+}
+
+
+/* This is a query that tells the browser what style to use in case its width is > or = to 670px (px stands for pixels) */
+
+
 /* AKA this is the Desktop Style */
+
 @media screen and (min-width: 670px) {
-    .nav-desk > ul {
+    .nav-desk>ul {
         list-style-type: none;
         display: flex;
         flex-direction: row;
@@ -166,43 +203,43 @@ body{
         background-color: inherit;
         width: 99%;
     }
-
-    #language:hover{
-    background-color: #e7e7e7;
-    cursor: pointer;
+    #language:hover {
+        background-color: #e7e7e7;
+        cursor: pointer;
     }
-
-    .nav-desk li:hover{
+    .nav-desk li:hover {
         background-color: rgba(240, 240, 240, 0.89);
         color: #4e4e4e;
         cursor: pointer;
     }
-
     .nav-desk li {
         margin-bottom: 0 !important;
+        position: relative;
         color: black;
         border-bottom: 1px solid black;
         border-right: 1px solid black;
         width: 13%;
-        padding: 14px;
-        font-size: 22px;
+        padding: 1.2vw;
+        font-size: 2vw;
     }
-
-    li:last-child{
+    /* Fix This Whenever you have the time! */
+    .nav-elem>div {
+        /*position: absolute;*/
+        /*padding: 1.2vw;*/
+        transform: translateY(50%);
+        /*margin: auto;*/
+    }
+    li:last-child {
         border-right: none !important;
     }
-
     .nav-desk {
         display: block;
     }
-
-    .nav-phone{
+    .nav-phone {
         display: none;
     }
-
-    #search:hover{
-    background-color:#e9e9e9;
-    cursor: pointer;
-    }   
+    #search:hover {
+        background-color: #e9e9e9;
+        cursor: pointer;
+    }
 }
-

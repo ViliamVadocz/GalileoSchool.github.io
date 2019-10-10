@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <!--With this meta tag we are telling the browser what character set we will be using on our web-page (It's crucial for the Slovak diacritic to work, this is because ASCII the default character set doesn't include the weird Slovak symbols like ´ or ô or ˇ etc.) You can read more about this at [https://www.w3schools.com/html/html_charset.asp] -->
+    <title>GALILEO - súkromná základná anglická jazyková škola</title>
+    <!--With this title tag we set the tab text to our custom text, else it would just show the name of the file ex. index.html or index.php or home.html etc. -->
+    <link rel="shortcut icon" href="../favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="icon" href="../favicon.ico" type="image/vnd.microsoft.icon">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/nav_style.css">
+    <!-- End of Styles -->
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--End of Scripts-->
+
+</head>
+
+<body>
+    <!--This is the Header where stuff like Logo and Navigation bar can be found (Sometimes you may see some nice front pictures in here for a design reason)-->
+    <!-- Header Start -->
+    <header>
+        <!-- Navigation Bar Starts Here -->
+        <nav>
+            <div class="nav-phone">
+                <div class="left">
+                    <div class="nav-phone search-drop dropdown">
+                        <li id="search" class="nav-phone search"><img src="../images/icons/search.png"></li>
+                        <div class="nav-phone search-dropdown-content">
+                            <input class="nav-phone search-input" type="text" placeholder="Hladať..." name="search">
+                        </div>
+                    </div>
+                    <li id="logo" class="nav-phone logo"><img src="../images/logo.jpg"></li>
+                    <li id="title" class="nav-phone title"><img src="../images/parse_me.jpg"></li>
+                </div>
+                <div class="right">
+                    <!--This is a box that holds our navigation button for smaller devices-->
+                    <div class="nav-phone language-dropdown">
+                        <li id="langBtn" class="nav-phone lang"><img src="../images/icons/sk.png"></li>
+                        <div class="nav-phone language-dropdown-content">
+                            <li id="lang2" class="nav-phone lang" onclick="location.href='../index.html'"><img src="../images/icons/eng.png"></li>
+                        </div>
+                    </div>
+                    <li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="../images/icons/menu.png"></li>
+                    <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
+                </div>
+            </div>
+            <div id="nav-desk" class="nav-desk">
+                <!--This div box holds the actual menu-->
+                <ul id="Navigation" class="navbar">
+                    <!--I prefer using ul(unordered list) for the menu structure and flexibility-->
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Hlava</div>
+                    </li>
+                    <!--Each of these li(list item) elements represents a button in our menu-->
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Šlabikár</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Fonológia</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Fonetika</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Priamka</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Vzduchoľod</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Vysoké Tatry</div>
+                    </li>
+                </ul>
+            </div>
+            <script src="../js/jquery.js"></script>
+        </nav>
+        <!-- Navigation Bar Ends Here -->
+    </header>
+    <!-- Header End -->
+
+    <div class="content">
+        <main>
+            <h1>Galileo School</h1>
+            <p>Prebieha Pracovná Činnosť...</p>
+        </main>
+    </div>
+    <script src="../js/navigation.js"></script>
+</body>
+
+</html>
