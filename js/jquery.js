@@ -44,23 +44,25 @@ $(document).ready(function() {
               $('.search-input').val('');
             }*/
             slideOut();
+            $(selector).hide();
             searching = false;
         }
     });
 
 
     function slideIn(selector = searchInput) {
+        $(selector).show();
         $(selector).animate({
             "width": "40vw",
             "opacity": .9
-        }, 500);
+        }, 400);
     };
 
     function slideOut(selector = searchInput) {
         $(selector).animate({
-            "width": "0vw",
+            "width": "0",
             "opacity": 0,
-        }, 500);
+        }, 400);
     };
 
     //Use the code below for the desktop version (It is the hover version)
