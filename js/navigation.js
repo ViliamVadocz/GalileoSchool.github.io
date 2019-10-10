@@ -9,15 +9,24 @@ console.log("Javascript Loaded!");
  * Difficulty: Easy
  */
 const menuBtn = document.getElementById("nav-btn");
-
 const menuBtnImg = document.getElementById('menu-btn-img');
+
 var original_attribute_src = menuBtnImg.getAttribute('src');
-var url = window.location.pathname;
-var parsed_dir = url.substring(url.lastIndexOf("/") - 2, url.lastIndexOf("/"));
+var parsed_dir = Parse_Url(window.location.pathname, 2);
+
 if (parsed_dir == "sk")
     var exit_img_src = "../images/icons/close.png";
 else
     var exit_img_src = "images/icons/close.png";
+
+/**
+ * 
+ * @param {*} url Url that should be parsed
+ * @param {*} index Part to be returned
+ */
+function Parse_Url(url, index) {
+    return url.substring(url.lastIndexOf("/") - index, url.lastIndexOf("/"));
+}
 
 /** The same as above only now I'm trying to select a different element (in this case it's the menu itself) 
  * 

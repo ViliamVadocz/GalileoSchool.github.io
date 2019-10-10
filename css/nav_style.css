@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
-/* This is the default style that will be used, in-case there are no media queries this is the default style*/
+/* This is the default style that will be used, in case there are no media queries this is the default style*/
 
 
 /* I like to start with the mobile viewport first as my base and then just expand on that code using queries etc.*/
@@ -69,12 +69,6 @@
     z-index: 4;
     list-style-type: none;
 }
-
-
-/*.nav-phone .language-dropdown{
-    display: flex;
-    flex-direction: column;
-}*/
 
 .nav-phone .language-dropdown {
     display: flex;
@@ -160,11 +154,6 @@ body {
 .active-nav-btn {
     background-color: #cccccc !important;
 }
-
-
-/*.nav-phone .search-dropdown-content{
-    display: none;
-}*/
 
 .nav-phone .search-input {
     width: 0vw;
