@@ -44,7 +44,6 @@ $(document).ready(function() {
               $('.search-input').val('');
             }*/
             slideOut();
-            $(selector).hide();
             searching = false;
         }
     });
@@ -63,6 +62,7 @@ $(document).ready(function() {
             "width": "0",
             "opacity": 0,
         }, 400);
+        $(selector).hide(500);
     };
 
     //Use the code below for the desktop version (It is the hover version)

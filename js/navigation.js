@@ -78,8 +78,10 @@ function check_resize() {
         }
         if (window.getComputedStyle(NavMenu).display == "none" || window.getComputedStyle(NavMenu).display == "block") {
             NavMenu.style.display = "flex";
-        } else
+        }
+        else{
             return;
+        }
     } else if (window.innerWidth < 670) {
         if (window.getComputedStyle(NavMenu).display == "flex") {
             NavMenu.style.display = "none";
