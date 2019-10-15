@@ -34,15 +34,21 @@
                             <input class="nav-phone search-input" type="text" placeholder="Search.." name="search">
                         </div>
                     </div>
-                    <li id="logo" class="nav-phone logo"><img src="images/logo.jpg"></li>
-                    <li id="title" class="nav-phone title"><img src="images/parse_me.jpg"></li>
+                    <li class="nav-phone logo"><img id="logo" src="images/logo.jpg"></li>
+                    <li class="nav-phone title">
+                        <div id="title">Galileo School</div>
+                    </li>
                 </div>
                 <div class="right">
                     <!--This is a box that holds our navigation button for smaller devices-->
                     <div class="nav-phone language-dropdown dropdown">
-                        <li id="langBtn" class="nav-phone lang"><img src="images/icons/eng.png"></li>
-                        <div class="nav-phone language-dropdown-content dropdown-content">
-                            <li id="lang2" class="nav-phone lang" onclick="location.href='sk/index.html'"><img src="images/icons/sk.png"></li>
+                        <li id="langBtn" class="nav-phone lang">
+                            <div class="lang-text">EN</div>
+                        </li>
+                        <div id="lang-sk" class="nav-phone language-dropdown-content dropdown-content">
+                            <li id="lang2" class="nav-phone lang" onclick="location.href='sk/index.html'">
+                                <div class="lang-text">SK</div>
+                            </li>
                         </div>
                     </div>
                     <li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="images/icons/menu.png"></li>
@@ -53,14 +59,28 @@
                 <!--This div box holds the actual menu-->
                 <ul id="Navigation" class="navbar">
                     <!--I prefer using ul(unordered list) for the menu structure and flexibility-->
-                    <li onclick="location.href='#'" class="nav-elem">Lorem</li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Lorem</div>
+                    </li>
                     <!--Each of these li(list item) elements represents a button in our menu-->
-                    <li onclick="location.href='#'" class="nav-elem">Ipsum</li>
-                    <li onclick="location.href='#'" class="nav-elem">Foo</li>
-                    <li onclick="location.href='#'" class="nav-elem">Bar</li>
-                    <li onclick="location.href='#'" class="nav-elem">Etis</li>
-                    <li onclick="location.href='#'" class="nav-elem">Spiritus</li>
-                    <li onclick="location.href='#'" class="nav-elem">Santes</li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Ipsum</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Foo</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Bar</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Etis</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Spiritus</div>
+                    </li>
+                    <li onclick="location.href='#'" class="nav-elem">
+                        <div>Santes</div>
+                    </li>
                 </ul>
             </div>
             <script src="js/jquery.js"></script>

@@ -8,6 +8,13 @@ $(document).ready(function() {
     $(navBtn).click(function() {
         $('.navbar').slideToggle('fast');
         $('.dropdown-content').fadeOut(200);
+        $('.left').toggleClass('amber');
+        $('.language-dropdown').toggleClass('no-display');
+        $('.search-drop').toggleClass('hidden');
+        $('#title').toggleClass('title-open-nav');
+        $('.logo').toggleClass('logo-open-nav');
+        $('.title').toggleClass('title-cont-open-nav');
+        $('#logo').toggleClass('logo-img-open-nav');
     });
 
     // Using Id I'm selecting the element with the given Id in this case it is the language button
