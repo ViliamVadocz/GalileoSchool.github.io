@@ -7,6 +7,7 @@ $(document).ready(function() {
     // "Installing" Click event listener on the selected element (When clicked the navigation box slides up and down)
     $(navBtn).click(function() {
         $('.navbar').slideToggle('fast');
+        $('#nav-btn').toggleClass('active-nav-btn');
         $('.dropdown-content').fadeOut(200);
         $('.left').toggleClass('amber');
         $('.language-dropdown').toggleClass('no-display');
@@ -29,15 +30,21 @@ $(document).ready(function() {
 
     var searchBtn = '#search';
     var searchInput = '.search-input';
+    var logo = '.nav-phone .logo';
+    var title = '.nav-phone .title';
     var searching = false;
 
     $(searchBtn).click(
         function() {
             if (!searching) {
                 slideIn();
+                $(logo).addClass('no-display');
+                $(title).addClass('no-display');
                 searching = true;
             } else {
                 slideOut();
+                $(logo).removeClass('no-display');
+                $(title).removeClass('no-display');
                 searching = false;
             }
             return;
@@ -47,9 +54,6 @@ $(document).ready(function() {
         if (!$('.language-dropdown-content').is(":hover") && !$('.language-dropdown-content').is(":hidden") && !$(langBtn).is(":hover")) {
             $('.language-dropdown-content').fadeOut(200);
         } else if (!$(searchInput).is(":hover") && !$(searchInput).is(":hidden") && !$(searchBtn).is(":hover")) {
-            /*if(!$(".search-input").val() == ''){
-              $('.search-input').val('');
-            }*/
             slideOut();
             searching = false;
         }

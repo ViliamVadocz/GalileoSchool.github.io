@@ -78,6 +78,7 @@ function check_resize() {
         }
         if (window.getComputedStyle(NavMenu).display == "none" || window.getComputedStyle(NavMenu).display == "block") {
             NavMenu.style.display = "flex";
+            resetMenu();
         } else {
             return;
         }
@@ -86,4 +87,24 @@ function check_resize() {
             NavMenu.style.display = "none";
         }
     }
+}
+
+function resetMenu() {
+    const left = document.querySelector('.left');
+    const language_drop = document.querySelector('.language-dropdown');
+    const search = document.querySelector('.search-drop');
+    const title_cont = document.querySelector('.title');
+    const logo_cont = document.querySelector('.logo');
+    const logo = document.getElementById('logo');
+    const title = document.getElementById('title');
+
+    console.log("Resetting the menu now!");
+    left.classList.remove('amber');
+    search.classList.remove('hidden');
+    language_drop.classList.remove('no-display');
+    title.classList.remove('title-open-nav');
+    logo.classList.remove('logo-img-open-nav');
+    logo_cont.classList.remove('logo-open-nav');
+    title_cont.classList.remove('title-cont-open-nav');
+    menuBtn.classList.remove('active-nav-btn');
 }
