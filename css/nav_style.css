@@ -103,10 +103,6 @@
     /* This cuts the corners of a square or a rectangle to form an eliptical shape, border-radius: 50% will form a perfect circle */
 }
 
-#lang-sk {
-    width: 10.145vw;
-}
-
 .nav-phone .language-dropdown-content>li {
     background-color: unset;
 }
@@ -116,12 +112,6 @@
     padding: 1.5vw;
     margin: auto;
     height: 100%;
-}
-
-li.nav-phone.lang.sk {
-    padding: 2.1vw;
-    padding-bottom: 1.5vw;
-    padding-top: 1.5vw;
 }
 
 .nav-phone .lang .lang-text {
@@ -140,14 +130,21 @@ li.nav-phone.lang.sk {
     padding: 1vw;
 }
 
+.nav-phone .logo {
+    width: auto;
+}
+
 .nav-phone .title {
-    width: 100%;
+    width: auto;
     padding: 1vw;
     margin: auto;
     padding-left: 0;
-    padding-right: 0;
     font-size: 6.3vw;
     text-transform: uppercase;
+}
+
+#logo-container {
+    width: 100%;
 }
 
 #title {
@@ -196,6 +193,12 @@ body {
 .active-nav-btn {
     background-color: #c00000 !important;
     transition: 0.5s ease;
+}
+
+div .square {
+    width: 7vw;
+    height: 7vw;
+    text-align: center;
 }
 
 .nav-phone .search-input {

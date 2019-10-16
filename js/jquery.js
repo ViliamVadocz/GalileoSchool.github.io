@@ -32,19 +32,26 @@ $(document).ready(function() {
     var searchInput = '.search-input';
     var logo = '.nav-phone .logo';
     var title = '.nav-phone .title';
+    var logo_cont = '#logo-container';
     var searching = false;
 
     $(searchBtn).click(
         function() {
             if (!searching) {
                 slideIn();
+
+                /** Temporary Solution */
                 $(logo).addClass('no-display');
                 $(title).addClass('no-display');
+
                 searching = true;
             } else {
                 slideOut();
+
+                /** Temporary Solution */
                 $(logo).removeClass('no-display');
                 $(title).removeClass('no-display');
+
                 searching = false;
             }
             return;
@@ -62,7 +69,7 @@ $(document).ready(function() {
 
     function slideIn(selector = searchInput) {
         $(selector).show();
-        $(selector).animate({
+        $(selector).delay(0).animate({
             "width": "40vw",
             "opacity": .9
         }, 400);
