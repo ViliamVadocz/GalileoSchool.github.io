@@ -161,6 +161,9 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Workspace files
+*.code-workspace
+
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
