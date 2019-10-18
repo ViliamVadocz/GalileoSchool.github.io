@@ -3,11 +3,12 @@
 <!--This Indention is Totally Legal and We Are 100% Certain About This-->
 
 <head>
-    <meta charset="utf-8">
     <!--With this meta tag we are telling the browser what character set we will be using on our web-page (It's crucial for the Slovak diacritic to work, this is because ASCII the default character set doesn't include the weird Slovak symbols like ´ or ô or ˇ etc.) You can read more about this at [https://www.w3schools.com/html/html_charset.asp] -->
+    <meta charset="utf-8">
+    <!-- ADD COMMENT -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GALILEO - private primary English language school</title>
     <!--With this title tag we set the tab text to our custom text, else it would just show the name of the file ex. index.html or index.php or home.html etc. -->
+    <title>GALILEO - private primary English language school</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
     <meta name="copyright" content="© 2019, GALILEO SCHOOL, s.r.o.">
@@ -27,10 +28,10 @@
     <header>
         <!-- Navigation Bar Starts Here -->
         <nav>
-            <div class="nav-phone">
+            <div id="nav-bar" class="nav-phone">
                 <div class="left">
-                    <div class="nav-phone search-drop dropdown">
-                        <li id="search" class="nav-phone search"><img src="images/icons/search.png"></li>
+                    <div class="nav-phone search-drop dropdown square">
+                        <div id="search" class="nav-phone search"><img id="menu-img" src="images/icons/search.png"></div>
                         <div class="nav-phone search-dropdown-content">
                             <input class="nav-phone search-input" type="text" placeholder="Search.." name="search">
                         </div>
@@ -44,9 +45,11 @@
                 </div>
                 <div class="right">
                     <!--This is a box that holds our navigation button for smaller devices-->
-                    <div class="nav-phone language-dropdown dropdown">
+                    <div class="nav-phone language-dropdown dropdown square">
                         <li id="langBtn" class="nav-phone lang">
-                            <div class="lang-text square">EN</div>
+                            <div class="lang-text">
+                                <div>EN</div>
+                            </div>
                         </li>
                         <div id="lang-sk" class="nav-phone language-dropdown-content dropdown-content">
                             <li id="lang2" class="nav-phone lang" onclick="location.href='sk/index.html'">
@@ -54,7 +57,9 @@
                             </li>
                         </div>
                     </div>
-                    <li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="images/icons/menu.png"></li>
+                    <div id="nav-btn" class="nav-phone toggle square">
+                        <img id="menu-img" src="images/icons/menu.png">
+                    </div>
                     <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
                 </div>
             </div>

@@ -41,17 +41,11 @@ $(document).ready(function() {
                 slideIn();
 
                 /** Temporary Solution */
-                $(logo).addClass('no-display');
-                $(title).addClass('no-display');
-
                 searching = true;
             } else {
                 slideOut();
 
                 /** Temporary Solution */
-                $(logo).removeClass('no-display');
-                $(title).removeClass('no-display');
-
                 searching = false;
             }
             return;
@@ -73,6 +67,8 @@ $(document).ready(function() {
             "width": "40vw",
             "opacity": .9
         }, 400);
+        $(logo).addClass('no-display');
+        $(title).addClass('no-display');
     };
 
     function slideOut(selector = searchInput) {
@@ -81,6 +77,8 @@ $(document).ready(function() {
             "opacity": 0,
         }, 400);
         $(selector).hide(500);
+        $(logo).removeClass('no-display');
+        $(title).removeClass('no-display');
     };
 
     //Use the code below for the desktop version (It is the hover version)
