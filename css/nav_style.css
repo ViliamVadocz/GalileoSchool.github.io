@@ -64,11 +64,10 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    float: left;
     z-index: 1;
-    width: 100%;
     /* Z-index is a Z-axis on a 3D coordiante plane, therefore it tells the brwoser the order of visibility in which our elements should be ordered, smallest value = all the way in the back and the highest value = all the way in the front */
     list-style-type: none;
+    width: 100%;
 }
 
 .nav-phone>.right {
@@ -76,7 +75,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    float: right;
+    height: 100%;
     z-index: 4;
     list-style-type: none;
     /* This tells the browser that we don't want to display the default list bullet points infront of every list item */
@@ -99,8 +98,9 @@
     top: 10vw;
     background-color: #e4e4e4 !important;
     z-index: 4;
-    border-radius: 0.25vw;
+    /*border-radius: 0.25vw;*/
     /* This cuts the corners of a square or a rectangle to form an eliptical shape, border-radius: 50% will form a perfect circle */
+    height: 10vw;
 }
 
 .nav-phone .language-dropdown-content>li {
@@ -109,8 +109,6 @@
 
 .nav-phone .lang {
     background-color: #cccccc;
-    padding: 1.5vw;
-    margin: auto;
     height: 100%;
 }
 
@@ -162,12 +160,22 @@
 
 #nav-btn {
     background-color: #a60000;
-    padding: 1.5vw;
+    width: 10vw;
 }
 
 #search {
     background-color: #cccccc;
-    padding: 1.5vw;
+    width: 10vw;
+}
+
+#search-img {
+    width: 7vw;
+    height: 7vw;
+}
+
+#menu-img {
+    height: 7vw;
+    margin: auto;
 }
 
 .content {
@@ -177,8 +185,7 @@
 }
 
 .nav-phone>img {
-    width: 7vw;
-    height: 7vw;
+    height: 100%;
 }
 
 .blur {
@@ -196,9 +203,13 @@ body {
 }
 
 div .square {
-    width: 7vw;
-    height: 7vw;
+    width: 10vw;
     text-align: center;
+}
+
+#nav-bar {
+    height: 10vw;
+    width: 100vw;
 }
 
 .nav-phone .search-input {
