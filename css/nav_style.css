@@ -203,6 +203,7 @@ body {
 }
 
 div .square {
+    display: flex;
     width: 10vw;
     text-align: center;
 }
@@ -254,7 +255,7 @@ div .square {
 
 .title-open-nav {
     color: ghostwhite !important;
-    margin-left: 2vw !important;
+    /*margin-left: 2vw !important;*/
 }
 
 .title-cont-open-nav {
