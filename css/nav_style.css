@@ -28,8 +28,12 @@
     /* This tells the browser that I don't want any padding at the start of the line in my whole unordered list, without this our items inside the ul would be shifted towards right due to this padding value not being 0 */
 }
 
-li.nav-phone.lang{
+div.nav-phone.lang{
     width: 10vw;
+}
+
+div.nav-phone.lang > div{
+    margin: auto;
 }
 
 .nav-desk li {
@@ -69,7 +73,7 @@ li.nav-phone.lang{
     flex-direction: row;
     justify-content: flex-start;
     z-index: 1;
-    /* Z-index is a Z-axis on a 3D coordiante plane, therefore it tells the brwoser the order of visibility in which our elements should be ordered, smallest value = all the way in the back and the highest value = all the way in the front */
+    /* Z-index is the Z-axis on a 3D coordiante plane, therefore it tells the brwoser the order of visibility in which our elements should be ordered, smallest value = all the way in the back and the highest value = all the way in the front */
     list-style-type: none;
     width: 100%;
 }
@@ -80,7 +84,7 @@ li.nav-phone.lang{
     flex-direction: row;
     justify-content: flex-end;
     height: 100%;
-    z-index: 4;
+    z-index: 1;
     list-style-type: none;
     /* This tells the browser that we don't want to display the default list bullet points infront of every list item */
 }
@@ -96,15 +100,18 @@ li.nav-phone.lang{
     justify-content: center;
 }
 
-.nav-phone .language-dropdown-content {
+.nav-phone.language-dropdown-content {
     position: absolute;
     display: none;
     top: 10vw;
-    background-color: #e4e4e4 !important;
-    z-index: 4;
+    z-index: 1;
     /*border-radius: 0.25vw;*/
     /* This cuts the corners of a square or a rectangle to form an eliptical shape, border-radius: 50% will form a perfect circle */
     height: 10vw;
+}
+
+.light-gray{
+    background-color: #e4e4e4 !important;
 }
 
 .nav-phone .language-dropdown-content>li {
@@ -112,11 +119,14 @@ li.nav-phone.lang{
 }
 
 .nav-phone .lang {
-    background-color: #cccccc;
     height: 100%;
 }
 
-.nav-phone .lang .lang-text {
+.darker-gray{
+    background-color: #cccccc;
+}
+
+.lang-text {
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     font-weight: 500;
     font-size: 5.6vw;
@@ -136,9 +146,8 @@ li.nav-phone.lang{
     width: auto;
 }
 
-.nav-phone .title {
+.nav-phone.title {
     width: auto;
-    padding: 1vw;
     margin: auto;
     padding-left: 0;
     font-size: 6.3vw;
@@ -226,7 +235,7 @@ div .square {
     padding: 1vw;
     font-size: 3.5vw;
     position: absolute;
-    z-index: 3;
+    z-index: 1;
     opacity: 0;
     /* Opacity is the measure of how transparent an element and its background should be */
 }

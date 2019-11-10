@@ -29,32 +29,39 @@
     <header>
         <!-- Navigation Bar Starts Here -->
         <nav>
-            <div class="nav-phone">
+            <div id="nav-bar" class="nav-phone">
                 <div class="left">
-                    <div class="nav-phone search-drop dropdown">
-                        <li id="search" class="nav-phone search"><img src="../images/icons/search.png"></li>
+                    <div class="nav-phone search-drop dropdown square">
+                        <div id="search" class="nav-phone search"><img id="menu-img" src="../images/icons/search.png">
+                        </div>
                         <div class="nav-phone search-dropdown-content">
-                            <input class="nav-phone search-input" type="text" placeholder="Hladať..." name="search">
+                            <input class="nav-phone search-input" type="text" placeholder="Search.." name="search">
                         </div>
                     </div>
-                    <li class="nav-phone logo"><img id="logo" src="../images/logo.jpg"></li>
-                    <li class="nav-phone title">
-                        <div id="title">Galileo School</div>
-                    </li>
+                    <div id="logo-container" class="nav-phone school-logo-container">
+                        <li class="nav-phone logo"><img id="logo" src="../images/logo.jpg"></li>
+                        <li class="nav-phone title">
+                            <div id="title">Galileo School</div>
+                        </li>
+                    </div>
                 </div>
                 <div class="right">
                     <!--This is a box that holds our navigation button for smaller devices-->
-                    <div class="nav-phone language-dropdown">
-                        <li id="langBtn" class="nav-phone lang sk">
-                            <div class="lang-text square">SK</div>
-                        </li>
-                        <div class="nav-phone language-dropdown-content">
-                            <li id="lang2" class="nav-phone lang" onclick="location.href='../index.html'">
-                                <div style="width: auto; margin-right: 20%;" class="lang-text">EN</div>
-                            </li>
+                    <div id="menu-btn-img" class="nav-phone language-dropdown dropdown square">
+                        <div id="langBtn" class="nav-phone lang darker-gray">
+                            <div class="lang-text">
+                                SK
+                            </div>
+                        </div>
+                        <div id="lang-sk" class="nav-phone language-dropdown-content dropdown-content">
+                            <div onclick="location.href='../index.html'" class="nav-phone light-gray lang lang-text">
+                                <div style="width: auto;">EN</div>
+                            </div>
                         </div>
                     </div>
-                    <li id="nav-btn" class="nav-phone toggle"><img id="menu-btn-img" src="../images/icons/menu.png"></li>
+                    <div id="nav-btn" class="nav-phone toggle square">
+                        <img id="menu-img" src="../images/icons/menu.png">
+                    </div>
                     <!--This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible-->
                 </div>
             </div>
@@ -67,22 +74,22 @@
                     </li>
                     <!--Each of these li(list item) elements represents a button in our menu-->
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Šlabikár</div>
+                        <div>Domov</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Fonológia</div>
+                        <div>Triedy</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Fonetika</div>
+                        <div>Marcipán</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Priamka</div>
+                        <div>Auto</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Vzduchoľod</div>
+                        <div>Internet</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Vysoké Tatry</div>
+                        <div>O Nás</div>
                     </li>
                 </ul>
             </div>
@@ -95,7 +102,7 @@
     <div class="content">
         <main>
             <h1>Galileo School</h1>
-            <p>Prebieha Pracovná Činnosť...</p>
+            <p>Trpezlivosť prináša rúže...</p>
         </main>
     </div>
     <script src="../js/navigation.js"></script>
