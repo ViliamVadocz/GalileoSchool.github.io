@@ -14,13 +14,21 @@ const menuBtnImg = document.getElementById('menu-btn-img');
 var original_attribute_src = menuBtnImg.getAttribute('src');
 var parsed_dir = Parse_Url(window.location.pathname, 2);
 
-if (parsed_dir == "sk")
+/**
+ * This little if statement checks whether we are on the slovak version of the web or on the english version,
+ * if we are on the slovak version the path to our images folder is one step backwards and then select images.
+ * If we are currently browsing the english version of the web the images folder is in the same directory so we simply select the images folder.
+ */
+if (parsed_dir == "sk") {
     var exit_img_src = "../images/icons/close.png";
-else
+} else {
     var exit_img_src = "images/icons/close.png";
+}
 
 /**
- * 
+ * @description This function parses the provided url by directories 
+ * (directory in the url is represented by the slash (/) symbol, and the text in-front of the slash is the directory name) 
+ * into an array and then returns a value that has the index you specified.
  * @param {*} url Url that should be parsed
  * @param {*} index Part to be returned
  */
@@ -47,12 +55,12 @@ menuBtn.addEventListener("click", toggle_menu, false);
  */
 window.addEventListener("resize", check_resize, false);
 
-/** Function that shows and hides our menu on mobile devices
+/** Toggles our navigation
  * 
  * Difficulty: Harder
- * @description What this function does to achieve the effect of hiding and showing our menu after clicking a button on a mobile device, 
- * is that it toggles (either adds or removes depends on wether or not the object already has the class) class that shows or hides our element.
- * Yeah, blur effect is also added using JavaScript and it's powerful events. 
+ * @description This function is responsible for hiding and/or showing our navigation menu after we click the menu button.
+ * It toggles (either adds or removes depends on wether or not the object already has the class) class that shows or hides our element.
+ * I also add blur effect using JavaScript and its powerful events. 
  */
 function toggle_menu() {
     if (menuBtnImg.getAttribute('src') == original_attribute_src)
@@ -89,6 +97,13 @@ function check_resize() {
     }
 }
 
+/** Reset Menu Function
+ * 
+ * @description This function resets all parts of the phone navigation menu to their default state,
+ * for example if you left your navigation menu opened on the mobile viewport and moved to the desktop viewport. 
+ * If I call this function during that transition it will force close the navigation, thus returning it to its default state
+ * in which it was before you touched it.
+ */
 function resetMenu() {
     const left = document.querySelector('.left');
     const language_drop = document.querySelector('.language-dropdown');

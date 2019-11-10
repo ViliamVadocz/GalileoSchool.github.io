@@ -15,24 +15,24 @@
 .nav-desk>ul {
     display: none;
     margin: auto;
-    width: 100vw;
     /* I will be using vw (view-width) units, this is the measure of the browsers content window width */
     /* Thanks to vw units we can assure ourselves that all things on our webpage will be super responsive, meaning their size/scale will change proportionally to the browser content window width */
+    width: 100vw;
     list-style-type: none;
     text-align: center;
     position: fixed;
     background-color: #9a0101;
     z-index: 1;
     padding: 8vw;
-    padding-left: 0;
     /* This tells the browser that I don't want any padding at the start of the line in my whole unordered list, without this our items inside the ul would be shifted towards right due to this padding value not being 0 */
+    padding-left: 0;
 }
 
-div.nav-phone.lang{
+div.nav-phone.lang {
     width: 10vw;
 }
 
-div.nav-phone.lang > div{
+div.nav-phone.lang>div {
     margin: auto;
 }
 
@@ -72,8 +72,8 @@ div.nav-phone.lang > div{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    z-index: 1;
     /* Z-index is the Z-axis on a 3D coordiante plane, therefore it tells the brwoser the order of visibility in which our elements should be ordered, smallest value = all the way in the back and the highest value = all the way in the front */
+    z-index: 1;
     list-style-type: none;
     width: 100%;
 }
@@ -85,8 +85,8 @@ div.nav-phone.lang > div{
     justify-content: flex-end;
     height: 100%;
     z-index: 1;
-    list-style-type: none;
     /* This tells the browser that we don't want to display the default list bullet points infront of every list item */
+    list-style-type: none;
 }
 
 .nav-phone .language-dropdown {
@@ -100,17 +100,15 @@ div.nav-phone.lang > div{
     justify-content: center;
 }
 
-.nav-phone.language-dropdown-content {
+.nav-phone .language-dropdown-content {
     position: absolute;
     display: none;
     top: 10vw;
     z-index: 1;
-    /*border-radius: 0.25vw;*/
-    /* This cuts the corners of a square or a rectangle to form an eliptical shape, border-radius: 50% will form a perfect circle */
     height: 10vw;
 }
 
-.light-gray{
+.light-gray {
     background-color: #e4e4e4 !important;
 }
 
@@ -122,7 +120,7 @@ div.nav-phone.lang > div{
     height: 100%;
 }
 
-.darker-gray{
+.darker-gray {
     background-color: #cccccc;
 }
 
@@ -146,7 +144,7 @@ div.nav-phone.lang > div{
     width: auto;
 }
 
-.nav-phone.title {
+.nav-phone .title {
     width: auto;
     margin: auto;
     padding-left: 0;
@@ -215,7 +213,7 @@ body {
     transition: 0.5s ease;
 }
 
-div .square {
+div.square {
     display: flex;
     width: 10vw;
     text-align: center;
@@ -236,13 +234,13 @@ div .square {
     font-size: 3.5vw;
     position: absolute;
     z-index: 1;
+    /* Opacity is the measure of how transparent an element and its background are */
     opacity: 0;
-    /* Opacity is the measure of how transparent an element and its background should be */
 }
 
 .nav-phone .search-input:focus {
     opacity: 1 !important;
-    /* !important is a special css attribute that overrides any styles that could possibly clash with it (It's like the Principle of Gymnasium compared to the Teacher of Gymnasium */
+    /* !important is a special css attribute that overrides any styles that could possibly clash with it (It's like the Principle of High School compared to the Teacher of High School) */
 }
 
 .hidden {
@@ -268,7 +266,6 @@ div .square {
 
 .title-open-nav {
     color: ghostwhite !important;
-    /*margin-left: 2vw !important;*/
 }
 
 .title-cont-open-nav {
@@ -280,7 +277,13 @@ div .square {
 /* This is a query that tells the browser what style to use in case its width is > or = to 670px (px stands for pixels) */
 
 
-/* AKA this is the Desktop Style */
+/* You may wonder how I got the number 670? Easy, trial and error method. You will have to master this technique to become a very good programmer. */
+
+
+/* I was trying different values from 800 to 540 and 670 came to be the golden mean. You may wonder why 800 to 540. Well, these widths are the most common for tablets and bigger mobile devices. */
+
+
+/* AKA this is the Tablet Style */
 
 @media screen and (min-width: 670px) {
     .nav-desk>ul {
@@ -311,7 +314,6 @@ div .square {
         margin-bottom: 0 !important;
         position: relative;
         color: black;
-        /*border-bottom: 2px solid black;*/
         border-right: 1px solid black;
         width: 100%;
         padding: 1.5vw;
@@ -336,6 +338,9 @@ div .square {
     }
 }
 
+
+/* Bigger Screens */
+
 @media only screen and (min-width: 1000px) {
     .nav-desk li {
         font-size: 1.5vw;
@@ -345,6 +350,9 @@ div .square {
         transform: translateY(0%);
     }
 }
+
+
+/* Desktop Viewport */
 
 @media only screen and (min-width: 1500px) {
     .nav-desk li {
