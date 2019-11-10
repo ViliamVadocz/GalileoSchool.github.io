@@ -24,8 +24,12 @@
     background-color: #9a0101;
     z-index: 1;
     padding: 8vw;
-    padding-inline-start: 0;
+    padding-left: 0;
     /* This tells the browser that I don't want any padding at the start of the line in my whole unordered list, without this our items inside the ul would be shifted towards right due to this padding value not being 0 */
+}
+
+li.nav-phone.lang{
+    width: 10vw;
 }
 
 .nav-desk li {
