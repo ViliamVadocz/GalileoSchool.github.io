@@ -1,9 +1,4 @@
-* {
-  box-sizing: border-box
-}
-
 .carousel {
-  max-width: 1000px;
   position: relative;
   margin: auto;
 }
@@ -13,76 +8,79 @@
   display: none;
 }
 
+/* TODO */
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
   width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
+  margin-top: -12vw;
+  padding: 3vw;
+  color: #2af3fa;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 10vw;
   transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 2vw 2vw 0;
   user-select: none;
 }
 
 /* Position the "next button" to the right */
 .next {
   right: 0;
-  border-radius: 3px 0 0 3px;
+  border-radius: 2vw 0 0 2vw;
 }
 
-/* On hover, add a black background color with a little bit see-through */
+/* On hover add a black tint */
 .prev:hover, .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Caption text */
+/* TODO */
+/* Slide title text */
 .slide_title {
-  color: #c82d2d;
-  font-size: 15px;
-  padding: 8px 12px;
+  color: #75056c;
+  font-size: 5vw;
   position: absolute;
-  bottom: 8px;
+  bottom: 8vw;
   width: 100%;
   text-align: center;
 }
 
+/* TODO */
+/* Slide description text */
 .slide_text {
-  color: #34d119;
-  font-size: 15px;
-  padding: 8px 12px;
+  color: #3e0dc3;
+  font-size: 2vw;
   position: absolute;
-  bottom: 8px;
+  bottom: 9vw;
   width: 100%;
   text-align: center;
 }
 
-/* The dots/bullets/indicators */
+/* The dots */
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
+  height: 3vw;
+  width: 3vw;
+  margin: 1vw 2vw;
+  background-color: #a7a7a7;
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 0.6s ease;
+  transition: background-color 0.5s ease;
 }
 
+/* Darker colour when active or on hover */
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: #5d5d5d;
 }
 
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 1.2s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1.2s;
 }
 
 @-webkit-keyframes fade {
