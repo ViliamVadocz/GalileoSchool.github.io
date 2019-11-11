@@ -9,13 +9,12 @@ body {
 
 .carousel {
   background-color: #a60000;
-  margin: auto;
-  width: 100%;
+  /* margin: auto; */
+  /* width: 100%; */
 }
 
 /* Hide the images by default */
 .slide {
-  text-align: center;
   display: none;
 }
 
@@ -72,6 +71,12 @@ body {
   font-size: 3vw;
   text-align: center;
   margin: 1vw;
+}
+
+/* Horizontal line */
+hr {
+  margin: 0;
+  color: #ffffff;
 }
 
 /* The dots */
