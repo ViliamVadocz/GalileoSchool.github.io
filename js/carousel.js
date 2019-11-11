@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 // Next and previous controls.
 function plus_slide(n) {
-    slide_index += n
-    show_slide(slide_index);
+    show_slide(slide_index + n);
 }
 
 // Slide control. Shows and hides as requested.
