@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 @import url('https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400i&display=swap');
 
+/* Remove border around body */
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 .carousel {
   background-color: #a60000;
   margin: auto;
@@ -15,6 +21,7 @@
 
 .slide > img { 
   width: 100vw;
+  margin: 0vw;
 }
 
 /* TODO */
@@ -24,7 +31,8 @@
   cursor: pointer;
   user-select: none;
   /* Position */
-  position: relative;
+  position: absolute;
+  top: 40vw; 
   /* Size and shape */
   padding: 2vw;
   border-radius: 0 2vw 2vw 0;
@@ -53,6 +61,7 @@
   font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
   font-size: 5vw;
   text-align: center;
+  margin: 1vw;
 }
 
 /* TODO */
@@ -62,6 +71,7 @@
   font-family: 'IM Fell Great Primer', serif;
   font-size: 3vw;
   text-align: center;
+  margin: 1vw;
 }
 
 /* The dots */
@@ -74,7 +84,7 @@
   height: 3vw;
   width: 3vw;
   margin: 1vw 2vw;
-  background-color: #ffffff;
+  background-color: #cccccc;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.5s ease;
@@ -82,5 +92,5 @@
 
 /* Darker colour when active or on hover */
 .active, .dot:hover {
-  background-color: #cccccc;
+  background-color: #ffffff;
 }
