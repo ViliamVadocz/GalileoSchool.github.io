@@ -11,9 +11,9 @@ function plus_slide(n) {
 
 // Slide control. Shows and hides as requested.
 function show_slide(wanted_slide) {
-    // Collect slides and dots.
+    // Collect slides and bars.
     var slides = document.getElementsByClassName("slide");
-    var dots = document.getElementsByClassName("dot");
+    var bars = document.getElementsByClassName("bar");
 
     // Set slide_index. Loop back around if needed.
     if (wanted_slide > slides.length) {
@@ -30,9 +30,9 @@ function show_slide(wanted_slide) {
     }
     slides[slide_index - 1].style.display = "block";
 
-    // Add active class to active dot, others lose active class.
-    for (var i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+    // Add active class to active bat, others lose active class.
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].className = bars[i].className.replace(" active", "");
     }
-    dots[slide_index - 1].className += " active";
+    bars[slide_index - 1].className += " active";
 }

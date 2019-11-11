@@ -47,16 +47,25 @@
 			</div>
 
 			<!-- Add more slides here as needed. -->
+			<!-- 
+				Template: 
+			<div class="slide">
+				<img src="[LINK TO IMAGE]" alt="[ALT TEXT]">
+				<p class="slide_title">[SLIDE TITLE]</p>
+				<hr>
+				<p class="slide_text">[SLIDE TEXT]</p>
+			</div>
+			-->
 
-			<!-- Next and previous buttons. -->
-			<a class="prev" onclick="plus_slide(-1)">&#10094;</a> <!-- Uses Unicode for arrows!  -->
+			<!-- Next and previous buttons. Uses Unicode for arrows! -->
+			<a class="prev" onclick="plus_slide(-1)">&#10094;</a>
 			<a class="next" onclick="plus_slide(1)">&#10095;</a>
 
-			<!-- The dots - used for move to specific slide. -->
-			<div class="dots" style="text-align: center;">
-				<span class="dot" onclick="show_slide(1)"></span>
-				<span class="dot" onclick="show_slide(2)"></span>
-				<span class="dot" onclick="show_slide(3)"></span>
+			<!-- The bars - used for move to specific slide. -->
+			<div style="text-align: center;">
+				<span class="bar" onclick="show_slide(1)"></span>
+				<span class="bar" onclick="show_slide(2)"></span>
+				<span class="bar" onclick="show_slide(3)"></span>
 			</div>
 		</div>
 	</body>
