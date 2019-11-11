@@ -15,6 +15,8 @@ function show_slide(wanted_slide) {
     var slides = document.getElementsByClassName("slide");
     var dots = document.getElementsByClassName("dot");
 
+    // var prev_slide = slide_index
+
     // Set slide_index. Loop back around if needed.
     if (wanted_slide > slides.length) {
         slide_index = 1

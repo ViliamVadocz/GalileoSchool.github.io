@@ -12,30 +12,32 @@
 
 		<link rel="stylesheet" href="css/carousel.css">
 		<script src="js/carousel.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 	</head>
 	<body>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus qui cupiditate possimus, maxime, obcaecati, culpa quos iste dolorem magni cumque laborum aperiam! Iste temporibus ullam odit iure velit deserunt corporis!</p>
 		<!-- Carousel -->
 		<!-- Based on: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
 		<div class="carousel">
 			<!-- Slides are 1-indexed -->
 
 			<!-- First slide -->
-			<div class="slide fade">
-				<img src="images/slides/temp1.png" alt="Temporary image" style="width:100%">
+			<div class="slide">
+				<img src="images/slides/temp1.png" alt="Temporary image">
 				<p class="slide_title">Galileo School</p>
 				<p class="slide_text">Work in progress... Check back later!</p>
 			</div>
 
 			<!-- Second slide -->
-			<div class="slide fade">
-				<img src="images/slides/temp2.png" alt="Temporary image" style="width:100%">
+			<div class="slide">
+				<img src="images/slides/temp2.png" alt="Temporary image">
 				<p class="slide_title">Second Slide</p>
 				<p class="slide_text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 			</div>
 
 			<!-- Third slide -->
-			<div class="slide fade">
-				<img src="images/slides/temp3.png" alt="Temporary image" style="width:100%">
+			<div class="slide">
+				<img src="images/slides/temp3.png" alt="Temporary image">
 				<p class="slide_title">Third Slide</p>
 				<p class="slide_text">Soluta sed quia repellat debitis quasi eligendi facilis voluptatem.</p>
 			</div>
@@ -47,7 +49,7 @@
 			<a class="next" onclick="plus_slide(1)">&#10095;</a>
 
 			<!-- The dots - used for move to specific slide. -->
-			<div style="text-align:center">
+			<div class="dots" style="text-align:center">
 				<span class="dot" onclick="show_slide(1)"></span>
 				<span class="dot" onclick="show_slide(2)"></span>
 				<span class="dot" onclick="show_slide(3)"></span>

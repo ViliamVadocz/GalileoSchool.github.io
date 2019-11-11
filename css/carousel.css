@@ -1,31 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400i&display=swap');
+
 .carousel {
-  position: relative;
+  background-color: #a60000;
   margin: auto;
+  width: 100%;
 }
 
 /* Hide the images by default */
 .slide {
+  text-align: center;
   display: none;
 }
 
-/* TODO */
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -12vw;
-  padding: 3vw;
-  color: #2af3fa;
-  font-weight: bold;
-  font-size: 10vw;
-  transition: 0.6s ease;
-  border-radius: 0 2vw 2vw 0;
-  user-select: none;
+.slide > img { 
+  width: 100vw;
 }
 
-/* Position the "next button" to the right */
+/* TODO */
+/* Next and prev arrow buttons */
+.prev, .next {
+  /* Interactivity */
+  cursor: pointer;
+  user-select: none;
+  /* Position */
+  position: relative;
+  /* Size and shape */
+  padding: 2vw;
+  border-radius: 0 2vw 2vw 0;
+  /* Appearance */
+  font-weight: bold;
+  font-size: 8vw;
+  color: #ffffff;
+  transition: 0.4s ease;
+}
+
+/* Position the 'next' arrow on the right */
 .next {
   right: 0;
   border-radius: 2vw 0 0 2vw;
@@ -33,38 +43,38 @@
 
 /* On hover add a black tint */
 .prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* TODO */
 /* Slide title text */
 .slide_title {
-  color: #75056c;
+  color: #ffffff;
+  font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
   font-size: 5vw;
-  position: absolute;
-  bottom: 8vw;
-  width: 100%;
   text-align: center;
 }
 
 /* TODO */
 /* Slide description text */
 .slide_text {
-  color: #3e0dc3;
-  font-size: 2vw;
-  position: absolute;
-  bottom: 9vw;
-  width: 100%;
+  color: #ffffff;
+  font-family: 'IM Fell Great Primer', serif;
+  font-size: 3vw;
   text-align: center;
 }
 
 /* The dots */
+.dots {
+  padding-bottom: 10;
+}
+
 .dot {
   cursor: pointer;
   height: 3vw;
   width: 3vw;
   margin: 1vw 2vw;
-  background-color: #a7a7a7;
+  background-color: #ffffff;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.5s ease;
@@ -72,31 +82,5 @@
 
 /* Darker colour when active or on hover */
 .active, .dot:hover {
-  background-color: #5d5d5d;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.2s;
-  animation-name: fade;
-  animation-duration: 1.2s;
-}
-
-@-webkit-keyframes fade {
-  from {
-    opacity: .4
-  }
-  to {
-    opacity: 1
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: .4
-  }
-  to {
-    opacity: 1
-  }
+  background-color: #cccccc;
 }
