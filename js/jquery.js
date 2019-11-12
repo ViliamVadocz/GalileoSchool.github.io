@@ -24,9 +24,8 @@ $(document).ready(function() {
     // Assigning a newly created variable some value.
     var langBtn = '#langBtn';
 
-    // Hooking a Click event listener into an element that I selected previously.
-    $(langBtn).click(
-        function() {
+    // Hooking a Click event listener into an element that I selected (langBtn).
+    $(langBtn).click(function() {
             $('.language-dropdown-content').fadeToggle(200);
             return;
         });

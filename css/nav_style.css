@@ -6,7 +6,7 @@
 /* I like to start with the mobile viewport first, as it serves as a foundation that I can just expand on using queries etc. */
 
 
-/* nav-desk stands for Navigation-Desktop */
+/* Start Nav-Desk (Navigation-Desktop) */
 
 .nav-desk {
     display: block;
@@ -28,14 +28,6 @@
     padding-left: 0;
 }
 
-div.nav-phone.lang {
-    width: 10vw;
-}
-
-div.nav-phone.lang>div {
-    margin: auto;
-}
-
 .nav-desk li {
     padding: 3vw;
     padding-bottom: 1vw;
@@ -44,6 +36,10 @@ div.nav-phone.lang>div {
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     font-size: 4.5vw;
     z-index: 1;
+}
+
+.nav-desk .title {
+    padding: 4vw;
 }
 
 .nav-desk li:last-child {
@@ -56,8 +52,35 @@ div.nav-phone.lang>div {
     cursor: pointer;
 }
 
-.nav-elem>div {
+/* End Nav-Desk */
+
+
+/* Start of Nav-Phone classes */
+
+div.nav-phone.lang {
+    width: 10vw;
+}
+
+div.nav-phone.lang>div {
     margin: auto;
+}
+
+.nav-phone .logo>img {
+    width: 8vw;
+    height: 8vw;
+    margin: auto;
+    padding: 1vw;
+}
+
+.nav-phone .logo {
+    width: auto;
+}
+
+.nav-phone .title {
+    width: auto;
+    margin: auto;
+    padding-left: 0;
+    font-size: 6.3vw;
     text-transform: uppercase;
 }
 
@@ -108,10 +131,6 @@ div.nav-phone.lang>div {
     height: 10vw;
 }
 
-.light-gray {
-    background-color: #e4e4e4 !important;
-}
-
 .nav-phone .language-dropdown-content>li {
     background-color: unset;
 }
@@ -120,108 +139,8 @@ div.nav-phone.lang>div {
     height: 100%;
 }
 
-.darker-gray {
-    background-color: #cccccc;
-}
-
-.lang-text {
-    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
-    font-weight: 500;
-    font-size: 5.6vw;
-    position: relative;
-    margin: auto;
-    cursor: default;
-}
-
-.nav-phone .logo>img {
-    width: 8vw;
-    height: 8vw;
-    margin: auto;
-    padding: 1vw;
-}
-
-.nav-phone .logo {
-    width: auto;
-}
-
-.nav-phone .title {
-    width: auto;
-    margin: auto;
-    padding-left: 0;
-    font-size: 6.3vw;
-    text-transform: uppercase;
-}
-
-#logo-container {
-    width: 100%;
-}
-
-#title {
-    margin: auto;
-    color: #a60000;
-    font-weight: bold;
-    letter-spacing: -0.08vw;
-    transform: scale(1, 1.3);
-    cursor: default;
-}
-
-.nav-desk .title {
-    padding: 4vw;
-}
-
-#nav-btn {
-    background-color: #a60000;
-    width: 10vw;
-}
-
-#search {
-    background-color: #cccccc;
-    width: 10vw;
-}
-
-#search-img {
-    width: 7vw;
-    height: 7vw;
-}
-
-#menu-img {
-    height: 7vw;
-    margin: auto;
-}
-
-.content {
-    z-index: 0;
-    padding: 1em;
-    text-align: center;
-}
-
 .nav-phone>img {
     height: 100%;
-}
-
-.blur {
-    filter: blur(1px);
-}
-
-body {
-    padding: 0;
-    margin: 0;
-}
-
-.active-nav-btn {
-    background-color: #c00000 !important;
-    transition: 0.5s ease;
-}
-
-div.square {
-    display: flex;
-    width: 10vw;
-    text-align: center;
-}
-
-#nav-bar {
-    height: 10vw;
-    width: 100vw;
 }
 
 .nav-phone .search-input {
@@ -239,8 +158,21 @@ div.square {
 }
 
 .nav-phone .search-input:focus {
-    opacity: 1 !important;
     /* !important is a special css attribute that overrides any styles that could possibly clash with it (It's like the Principle of High School compared to the Teacher of High School) */
+    opacity: 1 !important;
+}
+
+/* End of Nav-Phone classes */
+
+
+/* Pre-Made Styling Classes */
+
+.light-gray {
+    background-color: #e4e4e4 !important;
+}
+
+.darker-gray {
+    background-color: #cccccc;
 }
 
 .hidden {
@@ -254,6 +186,64 @@ div.square {
 .amber {
     background: #9a0101;
 }
+
+div.square {
+    display: flex;
+    width: 10vw;
+    text-align: center;
+}
+
+.blur {
+    filter: blur(1px);
+}
+
+/* End of Pre-Made styling classes */
+
+
+/* Styling Elments using ID */
+
+#logo-container {
+    width: 100%;
+}
+
+#title {
+    margin: auto;
+    color: #a60000;
+    font-weight: bold;
+    letter-spacing: -0.08vw;
+    transform: scale(1, 1.3);
+    cursor: default;
+}
+
+#nav-btn {
+    background-color: #a60000;
+    width: 10vw;
+}
+
+#search {
+    background-color: #cccccc;
+    width: 10vw;
+}
+
+#search-img {
+    width: 7vw;
+    height: 7vw;
+}
+
+#nav-bar {
+    height: 10vw;
+    width: 100vw;
+}
+
+#menu-img {
+    height: 7vw;
+    margin: auto;
+}
+
+/* End of Styling Elements by ID */
+
+
+/* Logo + Title Css */
 
 .logo-open-nav {
     margin-left: 6vw !important;
@@ -273,15 +263,44 @@ div.square {
     padding-bottom: 0.5vw !important;
 }
 
+/* End of Logo + Title Css */
+
+
+/* All the rest */
+
+.content {
+    z-index: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.lang-text {
+    font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    font-weight: 500;
+    font-size: 5.6vw;
+    position: relative;
+    margin: auto;
+    cursor: default;
+}
+
+.nav-elem>div {
+    margin: auto;
+    text-transform: uppercase;
+}
+
+.active-nav-btn {
+    background-color: #c00000 !important;
+    transition: 0.5s ease;
+}
 
 /* This is a query that tells the browser what style to use in case its width is > or = to 670px (px stands for pixels) */
-
-
 /* You may wonder how I got the number 670? Easy, trial and error method. You will have to master this technique to become a very good programmer. */
-
-
 /* I was trying different values from 800 to 540 and 670 came to be the golden mean. You may wonder why 800 to 540. Well, these widths are the most common for tablets and bigger mobile devices. */
-
 
 /* AKA this is the Tablet Style */
 

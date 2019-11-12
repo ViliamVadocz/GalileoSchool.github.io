@@ -100,9 +100,12 @@ function check_resize() {
 /** Reset Menu Function
  * 
  * @description This function resets all parts of the phone navigation menu to their default state,
- * for example if you left your navigation menu opened on the mobile viewport and moved to the desktop viewport. 
- * If I call this function during that transition it will force close the navigation, thus returning it to its default state
+ * for example if you leave your navigation menu opened on the mobile viewport and then you move onto the desktop viewport,
+ * If this function is called during that transition it will force close the navigation, thus returning it to its default state
  * in which it was before you touched it.
+ * 
+ * In case you add something to navbar that is somehow animated or can be hidden and displayed, you      to add it's default state here.
+ * For example if you make logo zoomable onclick, you should get it's default value and include it in this function. To prevent some annoying bugs, it will be forced to it's default value as the rest of the menu.
  */
 function resetMenu() {
     const left = document.querySelector('.left');
