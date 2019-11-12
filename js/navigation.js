@@ -9,7 +9,12 @@ console.log("Javascript Loaded!");
  * Difficulty: Easy
  */
 const menuBtn = document.getElementById("nav-btn");
-const menuBtnImg = document.getElementById('menu-btn-img');
+const menuBtnImg = document.getElementById('menu-img');
+
+if(menuBtnImg == null){
+    alert("Javascript could not find Menu Button");
+    throw new Error("Null value was found!");
+}
 
 var original_attribute_src = menuBtnImg.getAttribute('src');
 var parsed_dir = Parse_Url(window.location.pathname, 2);

@@ -79,6 +79,7 @@ div.nav-phone.lang>div {
 .nav-phone .title {
     width: auto;
     margin: auto;
+    margin-left: calc(1.5rem - 3.5vw);
     padding-left: 0;
     font-size: 6.3vw;
     text-transform: uppercase;
@@ -210,8 +211,8 @@ div.square {
     margin: auto;
     color: #a60000;
     font-weight: bold;
-    letter-spacing: -0.08vw;
-    transform: scale(1, 1.3);
+    letter-spacing: -0.18vw;
+    transform: scale(1, 1.5);
     cursor: default;
 }
 
@@ -235,7 +236,7 @@ div.square {
     width: 100vw;
 }
 
-#menu-img {
+#menu-img, #search-img {
     height: 7vw;
     margin: auto;
 }
@@ -246,7 +247,7 @@ div.square {
 /* Logo + Title Css */
 
 .logo-open-nav {
-    margin-left: 6vw !important;
+    margin-left: 3vw !important;
 }
 
 .logo-img-open-nav {
@@ -259,7 +260,7 @@ div.square {
 }
 
 .title-cont-open-nav {
-    margin-bottom: 0.2vw !important;
+    margin-bottom: 0.5vw !important;
     padding-bottom: 0.5vw !important;
 }
 
