@@ -158,8 +158,8 @@ div.nav-phone.lang>div {
 }
 
 .nav-phone .search-input:focus {
-    opacity: 1 !important;
     /* !important is a special css attribute that overrides any styles that could possibly clash with it (It's like the Principle of High School compared to the Teacher of High School) */
+    opacity: 1 !important;
 }
 
 /* End of Nav-Phone classes */
@@ -298,15 +298,9 @@ body {
     transition: 0.5s ease;
 }
 
-
 /* This is a query that tells the browser what style to use in case its width is > or = to 670px (px stands for pixels) */
-
-
 /* You may wonder how I got the number 670? Easy, trial and error method. You will have to master this technique to become a very good programmer. */
-
-
 /* I was trying different values from 800 to 540 and 670 came to be the golden mean. You may wonder why 800 to 540. Well, these widths are the most common for tablets and bigger mobile devices. */
-
 
 /* AKA this is the Tablet Style */
 
