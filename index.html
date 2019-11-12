@@ -5,6 +5,7 @@
 		<meta name="robots" content="all">
 		<meta name="description" content="GALILEO SCHOOL">
 		<meta charset="utf-8"> <!--With this meta tag we are telling the browser what character set we will be using on our web-page (It's crucial for the Slovak diacritic to work, this is because ASCII the default character set doesn't include the weird Slovak symbols like ´ or ô or ˇ etc.) You can read more about this at [https://www.w3schools.com/html/html_charset.asp] -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>GALILEO - súkromná základná anglická jazyková škola / angličtina / private primary English language school</title> <!--With this title tag we set the tab text to our custom text, else it would just show the name of the file ex. index.html or index.php or home.html etc. -->
 		<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> 
 		<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
@@ -15,11 +16,18 @@
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 	</head>
 	<body>
-		<p style="text-align:center;">[INSERT NAVIGATION HERE]</p>
+		<!-- Placeholder navigation just to get the spacing right -->
+		<p style="text-align:center; margin: 0px; padding: 0px; height: 8vw; font-size: 4vw;">[INSERT NAVIGATION HERE]</p>
 
 		<!-- Carousel -->
 		<!-- Based on: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
 		<div class="carousel">
+			<!-- Next and previous buttons. Uses Unicode for arrows! -->
+			<div class="arrows">
+				<a class="prev" onclick="plus_slide(-1)">&#10094;</a>
+				<a class="next" onclick="plus_slide(1)">&#10095;</a>
+			</div>
+
 			<!-- Slides are 1-indexed -->
 
 			<!-- First slide -->
@@ -56,13 +64,9 @@
 				<p class="slide_text">[SLIDE TEXT]</p>
 			</div>
 			-->
-
-			<!-- Next and previous buttons. Uses Unicode for arrows! -->
-			<a class="prev" onclick="plus_slide(-1)">&#10094;</a>
-			<a class="next" onclick="plus_slide(1)">&#10095;</a>
-
+			
 			<!-- The bars - used for move to specific slide. -->
-			<div style="text-align: center;">
+			<div style="text-align: center; user-select: none;">
 				<span class="bar" onclick="show_slide(1)"></span>
 				<span class="bar" onclick="show_slide(2)"></span>
 				<span class="bar" onclick="show_slide(3)"></span>

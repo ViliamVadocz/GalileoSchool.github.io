@@ -9,49 +9,52 @@ body {
 
 .carousel {
   background-color: #a60000;
+  text-align: center;
 }
 
 /* Hide the images by default */
 .slide {
   display: none;
-  text-align: center;
 }
 
-.slide > img { 
+.slide > a > img { 
   width: 100vw;
   margin: 0vw;
-  max-width: 800px;
   vertical-align: bottom;
+
+  /* Based on image size. */
+  max-width: 800px; 
+  /* I dislike hard-coding sizes like this but it 
+  is the cleanest solution I have found so far. */
 }
 
 /* Next and prev arrow buttons */
+.arrows {
+  position: absolute;
+
+  /* Based on image size. */
+  width: 100vw;
+  height: 75vw;
+  max-height: 600px;
+
+  /* Positioning arrows with Flexbox */
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+}
+
 .prev, .next {
   /* Interactivity */
   cursor: pointer;
   user-select: none;
-  /* Position */
-  position: absolute;
-  top: 40vw; /* TODO Maybe use calc()? */
-  /* Size and shape */
-  padding: 2vw;
-  border-radius: 0 2vw 2vw 0;
+
+  /* Button size / Space from side */
+  padding: 15vw 5vw 15vw 5vw;
+
   /* Appearance */
   font-weight: bold;
-  font-size: 8vw;
+  font-size: 6vw;
   color: #ffffff;
-  transition: 0.4s ease;
-}
-
-/* Position the 'next' arrow on the right */
-.next {
-  right: 0;
-  border-radius: 2vw 0 0 2vw;
-}
-
-/* On hover add a black tint */
-/* TODO Hover doesn't work on mobile and it might cause issues. */
-.prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Slide title text */
@@ -90,7 +93,7 @@ hr {
   transition: background-color 0.5s ease;
 }
 
-/* Darker colour when active or on hover */
-.active, .bar:hover {
+/* Change colour when active */
+.active{
   background-color: #ffffff;
 }
