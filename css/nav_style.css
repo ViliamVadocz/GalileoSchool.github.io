@@ -18,7 +18,7 @@
     list-style-type: none;
     text-align: center;
     position: fixed;
-    background-color: #9a0101;
+    background-color: #a60000;
     z-index: 1;
     padding: 8vw;
     /* Prevents ul items being shifted to the right */
@@ -44,7 +44,7 @@
 }
 
 .nav-desk li:hover {
-    background-color: #bd0303f8;
+    background-color: #c40000;
     color: #ffffff;
     cursor: pointer;
 }
@@ -173,8 +173,8 @@ div.nav-phone.lang > div {
     display: none !important;
 }
 
-.amber {
-    background: #9a0101;
+.red-wine {
+    background: #a60000;
 }
 
 div.square {
@@ -272,7 +272,7 @@ body {
 }
 
 .active-nav-btn {
-    background-color: #c00000 !important;
+    background-color: #c40000 !important;
     transition: 0.5s ease;
 }
 
