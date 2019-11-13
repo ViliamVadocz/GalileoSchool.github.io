@@ -86,7 +86,7 @@ function check_resize() {
         // Shows the navigation bar if it is hidden and resets the menu.
         if (window.getComputedStyle(NavMenu).display == "none" || window.getComputedStyle(NavMenu).display == "block") {
             NavMenu.style.display = "flex";
-            // resetMenu();
+            resetMenu();
         }
 
     // Otherwise if we are in the phone/tablet viewport, hide the navigation bar.
