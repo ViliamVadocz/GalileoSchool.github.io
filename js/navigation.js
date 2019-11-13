@@ -1,100 +1,95 @@
-/** This is a debug message that tells me wether or not my javascript was loaded, this debug message can be checked in developer tools in chrome under the tab named console
- * 
- * Difficulty: Easy
- */
-console.log("Javascript Loaded!");
+// Debug message to notify that the script has loaded.
+// To see it, find the console tab
+console.log("Navigation JavaScript has loaded!");
 
-/** Here I'm trying to select a specific element (in this case it is the navigation button) from my html file using its id(identifier) which is unique through-out the document 
- * 
- * Difficulty: Easy
- */
+// Getting the menu button (top-right corner) by ID.
 const menuBtn = document.getElementById("nav-btn");
-const menuBtnImg = document.getElementById('menu-img');
+const menuBtnImg = document.getElementById("menu-img");
 
-if(menuBtnImg == null){
-    alert("Javascript could not find Menu Button");
+// Throw an error if no menu button was found.
+if (menuBtnImg == null) {
+    alert("JavaScript could not find Menu Button");
     throw new Error("Null value was found!");
 }
 
-var original_attribute_src = menuBtnImg.getAttribute('src');
-var parsed_dir = Parse_Url(window.location.pathname, 2);
+// Collecting the menu itself.
+const NavMenuDesk = document.getElementById("nav-desk");
+const NavMenu = document.getElementById("navigation");
 
-/**
- * This little if statement checks whether we are on the slovak version of the web or on the english version,
- * if we are on the slovak version the path to our images folder is one step backwards and then select images.
- * If we are currently browsing the english version of the web the images folder is in the same directory so we simply select the images folder.
- */
-if (parsed_dir == "sk") {
-    var exit_img_src = "../images/icons/close.png";
+// TEMPORARY SOLUTION. WILL BE REPLACED ONCE WE MOVE TO HANDLEBARS.
+// Checks if we are in the sk folder and figures out the correct path to image.
+let exit_img_src
+if (Parse_Url(window.location.pathname, 2) == "sk") {
+    // ".." means the directory above the one we are in
+    exit_img_src = "../images/icons/close.png";
 } else {
-    var exit_img_src = "images/icons/close.png";
+    exit_img_src = "images/icons/close.png";
 }
 
-/**
- * @description This function parses the provided url by directories 
- * (directory in the url is represented by the slash (/) symbol, and the text in-front of the slash is the directory name) 
- * into an array and then returns a value that has the index you specified.
- * @param {*} url Url that should be parsed
- * @param {*} index Part to be returned
- */
-function Parse_Url(url, index) {
-    return url.substring(url.lastIndexOf("/") - index, url.lastIndexOf("/"));
-}
+// Gets default path to menu button image source.
+let original_attribute_src = menuBtnImg.getAttribute("src");
 
-/** The same as above only now I'm trying to select a different element (in this case it's the menu itself) 
- * 
- * Difficulty: Easy
- */
-const NavMenuDesk = document.getElementById('nav-desk');
-const NavMenu = document.getElementById('Navigation');
-
-/** Adding an Event Listener for an action (in my case it's the click on a button) done on my object, and passing a function that should be carried out when the event occurs.
- * 
- * Difficulty: Medium
- */
+// Adding an Event Listener for an action (click on a button) on my object.
+// A function is passed in that should be carried out when the event occurs.
 menuBtn.addEventListener("click", toggle_menu, false);
 
-/** The same as above but this time I'm actually listening when a browser is being resized. So whenever you extend or shrink your Internet Browser this event will fire up, again completing a function that I've passed into the event.
- * 
- * Difficulty: Medium
- */
+// Listen for browser resize.
 window.addEventListener("resize", check_resize, false);
 
-/** Toggles our navigation
- * 
- * Difficulty: Harder
- * @description This function is responsible for hiding and/or showing our navigation menu after we click the menu button.
- * It toggles (either adds or removes depends on wether or not the object already has the class) class that shows or hides our element.
- * I also add blur effect using JavaScript and its powerful events. 
+
+// Functions below.
+
+/** 
+ * @description Parse {url} string and return the last {len} characters
+ * before the last slash (/) in the string.
+ * @param {*} url Url that should be parsed.
+ * @param {*} len length of part to be returned.
  */
-function toggle_menu() {
-    if (menuBtnImg.getAttribute('src') == original_attribute_src)
-        menuBtnImg.setAttribute('src', exit_img_src);
-    else
-        menuBtnImg.setAttribute('src', original_attribute_src);
-    document.querySelector('.content').classList.toggle('blur'); /** Here I add blur effect to background when menu is visible, thus making human eye more focused on the menu rather than on the content in the background */
+function Parse_Url(url, len) {
+    return url.substring(url.lastIndexOf("/") - len, url.lastIndexOf("/"));
 }
 
-/** Function that checks the browser size whenever it is resized and evaluates the following statements
- * 
- * Difficulty: Harder
- * @description This function is crucial to get rid of annoying bugs that can occur when transitioning from mobile viewport to desktop viewport. 
- * Such as when you leave your menu open on a mobile viewport and you extend your browser to desktop viewport the blur effect will still be active, and that's a big NO NO!
+/**
+ * @description Hides and shows our navigation menu after we click the menu button.
+ * It toggles (either adds or removes) a class that shows or hides our element.
+ * It also adds a blur effect using JavaScript and its powerful events. 
+ */
+function toggle_menu() {
+    // Switches the image sources.
+    // If showing menu icon, switch to exit icon.
+    if (menuBtnImg.getAttribute("src") == original_attribute_src)
+        menuBtnImg.setAttribute("src", exit_img_src);
+    // Otherwise, switch to menu icon.
+    else menuBtnImg.setAttribute("src", original_attribute_src);
+
+    // Add blur effect to background when menu is visible to shift focus on menu.
+    document.querySelector(".content").classList.toggle("blur");
+}
+
+/** 
+ * @description Deals with issues that can occur when transitioning from
+ * mobile viewport to desktop viewport. E.g. When you leave the menu open 
+ * on the mobile viewport and move to the desktop viewport, the blur effect 
+ * applied by toggle_menu would still be active.
  */
 function check_resize() {
+    // If in desktop viewport (width needs to be the same as in nav_style.css):
     if (window.innerWidth >= 670) {
-        if (document.querySelector('.content').classList.contains('blur')) {
-            document.querySelector('.content').classList.remove('blur');
+        // Removes blur effect.
+        if (document.querySelector(".content").classList.contains("blur")) {
+            document.querySelector(".content").classList.remove("blur");
         }
-        if (menuBtnImg.getAttribute('src') == exit_img_src) {
-            menuBtnImg.setAttribute('src', original_attribute_src);
+        // Switches menu button image source to menu icon.
+        if (menuBtnImg.getAttribute("src") == exit_img_src) {
+            menuBtnImg.setAttribute("src", original_attribute_src);
         }
+        // Shows the navigation bar if it is hidden and resets the menu.
         if (window.getComputedStyle(NavMenu).display == "none" || window.getComputedStyle(NavMenu).display == "block") {
             NavMenu.style.display = "flex";
-            resetMenu();
-        } else {
-            return;
+            // resetMenu();
         }
+
+    // Otherwise if we are in the phone/tablet viewport, hide the navigation bar.
     } else if (window.innerWidth < 670) {
         if (window.getComputedStyle(NavMenu).display == "flex") {
             NavMenu.style.display = "none";
@@ -102,32 +97,28 @@ function check_resize() {
     }
 }
 
-/** Reset Menu Function
- * 
- * @description This function resets all parts of the phone navigation menu to their default state,
- * for example if you leave your navigation menu opened on the mobile viewport and then you move onto the desktop viewport,
- * If this function is called during that transition it will force close the navigation, thus returning it to its default state
- * in which it was before you touched it.
- * 
- * In case you add something to navbar that is somehow animated or can be hidden and displayed, you      to add it's default state here.
- * For example if you make logo zoomable onclick, you should get it's default value and include it in this function. To prevent some annoying bugs, it will be forced to it's default value as the rest of the menu.
+/**
+ * @description Resets all elements contributing to the phone navigation 
+ * to their default state. This is done because check_resize essentially 
+ * closes the navigation for us, but we also need to set all the attributes
+ * directly.
  */
 function resetMenu() {
-    const left = document.querySelector('.left');
-    const language_drop = document.querySelector('.language-dropdown');
-    const search = document.querySelector('.search-drop');
-    const title_cont = document.querySelector('.title');
-    const logo_cont = document.querySelector('.logo');
-    const logo = document.getElementById('logo');
-    const title = document.getElementById('title');
+    const left = document.querySelector(".left");
+    const language_drop = document.querySelector(".language-dropdown");
+    const search = document.querySelector(".search-drop");
+    const title_cont = document.querySelector(".title");
+    const logo_cont = document.querySelector(".logo");
+    const logo = document.getElementById("logo");
+    const title = document.getElementById("title");
 
     console.log("Resetting the menu now!");
-    left.classList.remove('amber');
-    search.classList.remove('hidden');
-    language_drop.classList.remove('no-display');
-    title.classList.remove('title-open-nav');
-    logo.classList.remove('logo-img-open-nav');
-    logo_cont.classList.remove('logo-open-nav');
-    title_cont.classList.remove('title-cont-open-nav');
-    menuBtn.classList.remove('active-nav-btn');
+    left.classList.remove("red-wine");
+    search.classList.remove("hidden");
+    language_drop.classList.remove("no-display");
+    title.classList.remove("title-open-nav");
+    logo.classList.remove("logo-img-open-nav");
+    logo_cont.classList.remove("logo-open-nav");
+    title_cont.classList.remove("title-cont-open-nav");
+    menuBtn.classList.remove("active-nav-btn");
 }
