@@ -1,22 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
-/* This is the default style that will be used, in case there are no media queries this is the default style */
+/* In general, we are using vw (view-width) units = browser's content window width */
+/* vw units will scale with the content window -> responsive website */
 
 
-/* I like to start with the mobile viewport first, as it serves as a foundation that I can just expand on using queries etc. */
+/* Mobile viewport first, serves as a foundation that can be expanded using queries */
 
-
-/* Start Nav-Desk (Navigation-Desktop) */
-
+/* Nav-Desk (Navigation-Desktop) */
 .nav-desk {
     display: block;
 }
 
-.nav-desk>ul {
+.nav-desk > ul {
     display: none;
     margin: auto;
-    /* I will be using vw (view-width) units, this is the measure of the browsers content window width */
-    /* Thanks to vw units we can assure ourselves that all things on our webpage will be super responsive, meaning their size/scale will change proportionally to the browser content window width */
     width: 100vw;
     list-style-type: none;
     text-align: center;
@@ -24,7 +21,7 @@
     background-color: #9a0101;
     z-index: 1;
     padding: 8vw;
-    /* This tells the browser that I don't want any padding at the start of the line in my whole unordered list, without this our items inside the ul would be shifted towards right due to this padding value not being 0 */
+    /* Prevents ul items being shifted to the right */
     padding-left: 0;
 }
 
@@ -52,20 +49,16 @@
     cursor: pointer;
 }
 
-/* End Nav-Desk */
-
-
-/* Start of Nav-Phone classes */
-
+/* Nav-Phone */
 div.nav-phone.lang {
     width: 10vw;
 }
 
-div.nav-phone.lang>div {
+div.nav-phone.lang > div {
     margin: auto;
 }
 
-.nav-phone .logo>img {
+.nav-phone .logo > img {
     width: 8vw;
     height: 8vw;
     margin: auto;
@@ -91,25 +84,25 @@ div.nav-phone.lang>div {
     justify-content: space-between;
 }
 
-.nav-phone>.left {
+.nav-phone > .left {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    /* Z-index is the Z-axis on a 3D coordiante plane, therefore it tells the brwoser the order of visibility in which our elements should be ordered, smallest value = all the way in the back and the highest value = all the way in the front */
+    /* Z-index controls what appears above what. Lowest value is in the back. */
     z-index: 1;
     list-style-type: none;
     width: 100%;
 }
 
-.nav-phone>.right {
+.nav-phone > .right {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     height: 100%;
     z-index: 1;
-    /* This tells the browser that we don't want to display the default list bullet points infront of every list item */
+    /* Removed default list bullet points */
     list-style-type: none;
 }
 
@@ -132,7 +125,7 @@ div.nav-phone.lang>div {
     height: 10vw;
 }
 
-.nav-phone .language-dropdown-content>li {
+.nav-phone .language-dropdown-content > li {
     background-color: unset;
 }
 
@@ -140,7 +133,7 @@ div.nav-phone.lang>div {
     height: 100%;
 }
 
-.nav-phone>img {
+.nav-phone > img {
     height: 100%;
 }
 
@@ -154,20 +147,16 @@ div.nav-phone.lang>div {
     font-size: 3.5vw;
     position: absolute;
     z-index: 1;
-    /* Opacity is the measure of how transparent an element and its background are */
+    /* Opacity controls transparency */
     opacity: 0;
 }
 
 .nav-phone .search-input:focus {
-    /* !important is a special css attribute that overrides any styles that could possibly clash with it (It's like the Principle of High School compared to the Teacher of High School) */
+    /* !important is a special ccs attribute that overrides any styles that could clash with it */
     opacity: 1 !important;
 }
 
-/* End of Nav-Phone classes */
-
-
-/* Pre-Made Styling Classes */
-
+/* Pre-made styling classes */
 .light-gray {
     background-color: #e4e4e4 !important;
 }
@@ -198,11 +187,7 @@ div.square {
     filter: blur(1px);
 }
 
-/* End of Pre-Made styling classes */
-
-
-/* Styling Elments using ID */
-
+/* Styling elements using ID */
 #logo-container {
     width: 100%;
 }
@@ -241,11 +226,7 @@ div.square {
     margin: auto;
 }
 
-/* End of Styling Elements by ID */
-
-
-/* Logo + Title Css */
-
+/* Logo + title CSS */
 .logo-open-nav {
     margin-left: 3vw !important;
 }
@@ -264,11 +245,7 @@ div.square {
     padding-bottom: 0.5vw !important;
 }
 
-/* End of Logo + Title Css */
-
-
-/* All the rest */
-
+/* The rest */
 .content {
     z-index: 0;
     padding: 1em;
@@ -289,7 +266,7 @@ body {
     cursor: default;
 }
 
-.nav-elem>div {
+.nav-elem > div {
     margin: auto;
     text-transform: uppercase;
 }
@@ -299,14 +276,13 @@ body {
     transition: 0.5s ease;
 }
 
-/* This is a query that tells the browser what style to use in case its width is > or = to 670px (px stands for pixels) */
-/* You may wonder how I got the number 670? Easy, trial and error method. You will have to master this technique to become a very good programmer. */
-/* I was trying different values from 800 to 540 and 670 came to be the golden mean. You may wonder why 800 to 540. Well, these widths are the most common for tablets and bigger mobile devices. */
 
-/* AKA this is the Tablet Style */
+/* Styles management based on screen width */
 
+/* Tablet style */
+/* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
 @media screen and (min-width: 670px) {
-    .nav-desk>ul {
+    .nav-desk > ul {
         list-style-type: none;
         display: flex;
         flex-direction: row;
@@ -358,22 +334,18 @@ body {
     }
 }
 
-
-/* Bigger Screens */
-
+/* Bigger screens */
 @media only screen and (min-width: 1000px) {
     .nav-desk li {
         font-size: 1.5vw;
         padding: 1.1vw;
     }
-    .nav-elem>div {
+    .nav-elem > iv {
         transform: translateY(0%);
     }
 }
 
-
-/* Desktop Viewport */
-
+/* Desktop viewport */
 @media only screen and (min-width: 1500px) {
     .nav-desk li {
         font-size: 1.2vw;
