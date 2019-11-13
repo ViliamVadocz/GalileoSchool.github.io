@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html>
 <!-- This indention is totally legal and we are 100% certain about this -->
+<html>
 
 <head>
-    <!-- With this meta tag we are telling the browser what character set we will be using on our web-page (It's crucial for the Slovak diacritic to work, this is because ASCII the default character set doesn't include the weird Slovak symbols like ´ or ô or ˇ etc.) You can read more about this at [https://www.w3schools.com/html/html_charset.asp] -->
+    <!-- Tells browser what character set we want. Default does not include SK characters -->
     <meta charset="utf-8">
-    <!-- A <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling. -->
-    <!-- The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device). -->
-    <!-- The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser. -->
+    <!-- Sets scale and width so our website displays properly on all devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="all">
     <meta name="description" content="GALILEO SCHOOL">
-    <!-- With this title tag we set the tab text to our custom text, else it would just show the name of the file ex. index.html or index.php or home.html etc. -->
+    <!-- Tab displays the custom text below instead of the file name -->
     <title>GALILEO - private primary English language school</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
     <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
@@ -19,21 +17,23 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/nav_style.css">
-    <!-- End of Styles -->
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- End of Scripts -->
+    <script src="js/jquery.js"></script>
 </head>
 
 <body>
-    <!-- This is the Header where stuff like Logo and Navigation bar can be found (Sometimes you may see some nice front pictures in here for a design reason) -->
-    <!-- Header Start -->
+    <!-- Header -->
+    <!-- The header usually contains the logo and a navigation bar -->
     <header>
-        <!-- Navigation Bar Starts Here -->
+        <!-- Navigation bar -->
         <nav>
+            <!-- Navigation for smaller devices -->
             <div id="nav-bar" class="nav-phone">
+                <!-- Items which should be on the left -->
                 <div class="left">
+                    <!-- Search button -->
                     <div class="nav-phone search-drop dropdown square">
                         <div id="search" class="nav-phone search">
                             <img id="search-img" src="images/icons/search.png">
@@ -42,6 +42,7 @@
                             <input class="nav-phone search-input" type="text" placeholder="Search.." name="search">
                         </div>
                     </div>
+                    <!-- School logo -->
                     <div id="logo-container" class="nav-phone school-logo-container">
                         <li class="nav-phone logo">
                             <img id="logo" src="images/logo.jpg">
@@ -51,13 +52,12 @@
                         </li>
                     </div>
                 </div>
+                <!-- Items which should be on the right -->
                 <div class="right">
-                    <!-- This is a box that holds our navigation button for smaller devices -->
+                    <!-- Language selection dropdown -->
                     <div id="menu-btn-img" class="nav-phone language-dropdown dropdown square">
                         <div id="langBtn" class="nav-phone lang darker-gray">
-                            <div class="lang-text">
-                                EN
-                            </div>
+                            <div class="lang-text">EN</div>
                         </div>
                         <div id="lang-sk" class="nav-phone language-dropdown-content dropdown-content">
                             <div onclick="location.href='sk/index.html'" class="nav-phone light-gray lang lang-text">
@@ -65,45 +65,46 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Button for opening navigation bar dropdown -->
                     <div id="nav-btn" class="nav-phone toggle square">
                         <img id="menu-img" src="images/icons/menu.png">
                     </div>
-                    <!-- This is our menu button for smaller devices what it does is it toggles our menu from visible to invisible -->
                 </div>
             </div>
+
+            <!-- The actual navigation menu -->
             <div id="nav-desk" class="nav-desk">
-                <!-- This div box holds the actual menu -->
+                <!-- We prefer ul (unordered list) for the menu structure and flexibility -->
                 <ul id="Navigation" class="navbar">
-                    <!-- I prefer using ul(unordered list) for the menu structure and flexibility -->
+                    <!-- Each of these li (list item) elements represents a button in our menu -->
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Lorem</div>
-                    </li>
-                    <!-- Each of these li(list item) elements represents a button in our menu -->
-                    <li onclick="location.href='#'" class="nav-elem">
-                        <div>Ipsum</div>
+                        <div>Main Page</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Foo</div>
+                        <div>School Profile</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Bar</div>
+                        <div>Interviews</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Etis</div>
+                        <div>Grades</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Spiritus</div>
+                        <div>School Web</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Santes</div>
+                        <div>Contacts</div>
                     </li>
+                    <!--
+                        Template:
+                    <li onclick="location.href='#[ENTER LINK HERE]'" class="nav-elem">
+                        <div>[ENTER ITEM HERE]</div>
+                    </li>
+                    -->
                 </ul>
             </div>
-            <script src="js/jquery.js"></script>
         </nav>
-        <!-- Navigation Bar Ends Here -->
     </header>
-    <!-- Header End -->
 
     <div class="content">
         <main>
@@ -111,6 +112,8 @@
             <p>Work in progress... Check back later!</p>
         </main>
     </div>
+
+    <!-- Script at the end to make sure everything else is already loaded . -->
     <script src="js/navigation.js"></script>
 </body>
 
