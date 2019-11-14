@@ -63,6 +63,7 @@ div.nav-phone.lang > div {
     height: 8vw;
     margin: auto;
     padding: 1vw;
+    cursor: default;
 }
 
 .nav-phone .logo {
@@ -82,6 +83,9 @@ div.nav-phone.lang > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* Prevent selecting and make the cursor a pointer */
+    cursor: pointer;
+    user-select: none;
 }
 
 .nav-phone > .left {
@@ -263,7 +267,6 @@ body {
     font-size: 5.6vw;
     position: relative;
     margin: auto;
-    cursor: default;
 }
 
 .nav-elem > div {
