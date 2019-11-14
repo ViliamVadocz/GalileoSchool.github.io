@@ -72,7 +72,7 @@ div.nav-phone.lang > div {
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: calc(1.5rem - 3.5vw);
+    margin-left: 2vw;
     padding-left: 0;
     font-size: 6.3vw;
     text-transform: uppercase;
