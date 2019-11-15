@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- This indention is totally legal and we are 100% certain about this -->
 <html>
+
 <head>
     <!-- Tells browser what character set we want. Default does not include SK characters -->
     <meta charset="utf-8">
@@ -15,13 +16,13 @@
     <meta name="copyright" content="© 2019, GALILEO SCHOOL, s.r.o.">
 
     <!-- Styles -->
-	<link rel="stylesheet" href="css/nav_style.css">
-	<link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="../css/nav_style.css">
+    <link rel="stylesheet" href="../css/carousel.css">
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="js/jquery.js"></script>
-	<script src="js/carousel.js"></script>
+    <script src="../js/jquery.js"></script>
+	<script src="../js/carousel.js"></script>
 </head>
 
 <body>
@@ -37,7 +38,7 @@
                     <!-- Search button -->
                     <div class="nav-phone search-drop dropdown square">
                         <div id="search" class="nav-phone search">
-                            <img id="search-img" src="images/icons/search.png">
+                            <img id="search-img" src="../images/icons/search.png">
                         </div>
                         <div class="nav-phone search-dropdown-content">
                             <input class="nav-phone search-input" type="text" placeholder="Search.." name="search">
@@ -46,7 +47,7 @@
                     <!-- School logo -->
                     <div id="logo-container" class="nav-phone school-logo-container">
                         <li class="nav-phone logo">
-                            <img id="logo" src="images/logo.jpg">
+                            <img id="logo" src="../images/logo.jpg">
                         </li>
                         <li class="nav-phone title">
                             <div id="title">Galileo School</div>
@@ -58,20 +59,21 @@
                     <!-- Language selection dropdown -->
                     <div id="menu-btn-img" class="nav-phone language-dropdown dropdown square">
                         <div id="langBtn" class="nav-phone lang darker-gray">
-                            <div class="lang-text">EN</div>
+                            <div class="lang-text">SK</div>
                         </div>
                         <div id="lang-sk" class="nav-phone language-dropdown-content dropdown-content">
-                            <div onclick="location.href='sk/index.html'" class="nav-phone light-gray lang lang-text">
-                                <div style="width: auto;">SK</div>
+                            <div onclick="location.href='../index.html'" class="nav-phone light-gray lang lang-text">
+                                <div style="width: auto;">EN</div>
                             </div>
                         </div>
                     </div>
-                    <!-- Button for opening navigation bar dropdown -->
+                    <!-- Button for opening navigation bar dropdown -->                
                     <div id="nav-btn" class="nav-phone toggle square">
-                        <img id="menu-img" src="images/icons/menu.png">
+                        <img id="menu-img" src="../images/icons/menu.png">
                     </div>
                 </div>
             </div>
+
 
             <!-- The actual navigation menu -->
             <div id="nav-desk" class="nav-desk">
@@ -79,22 +81,22 @@
                 <ul id="navigation" class="navbar">
                     <!-- Each of these li (list item) elements represents a button in our menu -->
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Main Page</div>
+                        <div>Hlavná Stránka</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>School Profile</div>
+                        <div>Profil Školy</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Interviews</div>
+                        <div>Prijímacie Pohovory</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Grades</div>
+                        <div>Žiacka Knižka</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>School Web</div>
+                        <div>Stránky Študentov</div>
                     </li>
                     <li onclick="location.href='#'" class="nav-elem">
-                        <div>Contacts</div>
+                        <div>Kontakty</div>
                     </li>
                     <!--
                         Template:
@@ -105,9 +107,9 @@
                 </ul>
             </div>
         </nav>
-	</header>
-    
-	<!-- Carousel -->
+    </header>
+
+    <!-- Carousel -->
 	<!-- Based on: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
 	<div class="carousel">
 		<!-- Next and previous buttons. Uses Unicode for arrows! -->
@@ -120,24 +122,24 @@
 
 		<!-- First slide -->
 		<div class="slide">
-			<a href="#"><img src="images/slides/temp1.png" alt="Temporary image"></a>
+			<a href="#"><img src="../images/slides/temp1.png" alt="Temporary image"></a>
 			<p class="slide_title">Galileo School</p>
 			<hr>
-			<p class="slide_text">Work in progress... Check back later!</p>
+			<p class="slide_text">Slovo bez diakritiky</p>
 		</div>
 
 		<!-- Second slide -->
 		<div class="slide">
-			<a href="#"><img src="images/slides/temp2.png" alt="Temporary image"></a>
-			<p class="slide_title">Second Slide</p>
+			<a href="#"><img src="../images/slides/temp2.png" alt="Temporary image"></a>
+			<p class="slide_title">2. Slide</p>
 			<hr>
 			<p class="slide_text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 		</div>
 
 		<!-- Third slide -->
 		<div class="slide">
-			<a href="#"><img src="images/slides/temp3.png" alt="Temporary image"></a>
-			<p class="slide_title">Third Slide</p>
+			<a href="#"><img src="../images/slides/temp3.png" alt="Temporary image"></a>
+			<p class="slide_title">3. Slide</p>
 			<hr>
 			<p class="slide_text">Soluta sed quia repellat debitis quasi eligendi facilis voluptatem.</p>
 		</div>
@@ -162,7 +164,7 @@
 	</div>
 
     <!-- Script at the end to make sure everything else is already loaded . -->
-    <script src="js/navigation.js"></script>
+    <script src="../js/navigation.js"></script>
 </body>
 
 </html>
