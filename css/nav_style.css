@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
+/* TODO: Figure out when the cursor should be a pointer. */
+
 /* In general, we are using vw (view-width) units = browser's content window width */
 /* vw units will scale with the content window -> responsive website */
 
@@ -46,7 +48,6 @@
 .nav-desk li:hover {
     background-color: #c40000;
     color: #ffffff;
-    cursor: pointer;
 }
 
 /* Nav-Phone */
@@ -72,7 +73,7 @@ div.nav-phone.lang > div {
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: calc(1.5rem - 3.5vw);
+    margin-left: 2vw;
     padding-left: 0;
     font-size: 6.3vw;
     text-transform: uppercase;
@@ -82,6 +83,8 @@ div.nav-phone.lang > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* Prevent selecting */
+    user-select: none;
 }
 
 .nav-phone > .left {
@@ -198,7 +201,6 @@ div.square {
     font-weight: bold;
     letter-spacing: -0.18vw;
     transform: scale(1, 1.5);
-    cursor: default;
 }
 
 #nav-btn {
@@ -257,7 +259,6 @@ body {
     font-size: 5.6vw;
     position: relative;
     margin: auto;
-    cursor: default;
 }
 
 .nav-elem > div {
@@ -293,12 +294,10 @@ body {
     }
     #language:hover {
         background-color: #e7e7e7;
-        cursor: pointer;
     }
     .nav-desk li:hover {
         background-color: rgba(240, 240, 240, 0.89);
         color: #4e4e4e;
-        cursor: pointer;
     }
     .nav-desk li {
         margin-bottom: 0 !important;
@@ -324,7 +323,6 @@ body {
     }
     #search:hover {
         background-color: #e9e9e9;
-        cursor: pointer;
     }
 }
 
