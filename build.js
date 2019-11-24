@@ -22,6 +22,12 @@ function isHtmlFile (filePath) {
 	return filePath.slice(-5) === '.html'
 }
 
+// create the target build/ folder if it doesn't exist yet
+if (!fs.existsSync('./build/')){
+	fs.mkdirSync('./build/')
+	console.log('Created build folder')
+}
+
 // first we prepare all folders in the build folder
 const sourceFolders = glob.sync(__dirname + '/source/**/', {})
 for (const sourceFolder of sourceFolders) {
