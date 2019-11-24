@@ -4,7 +4,7 @@
   "description": "",
   "main": "build.js",
   "scripts": {
-    "build": "build.js"
+    "build": "./build.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GalileoSchool/GalileoSchool.github.io#readme",
   "dependencies": {
+    "glob": "^7.1.6",
     "handlebars": "^4.3.0"
   }
 }
