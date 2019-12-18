@@ -8,13 +8,19 @@ const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars') // for using handlebars
 
+// getter function for directory name
+function getDirname () {
+	// replaces backwards slashes with forward slashes (Windows patch)
+	return __dirname.replace(/\\/g, '/')
+}
+
 // it's basically the old file with /source/ replaced with /build/
 function getBuildFilePathFromSourceFilePath (sourceFilePath) {
 	// note that replace only replaces the first occurence if the first argument
 	//  is a string
 	return sourceFilePath.replace(
-		__dirname + '/source/',
-		__dirname + '/build/'
+		getDirname() + '/source/',
+		getDirname() + '/build/'
 	)
 }
 
@@ -29,7 +35,7 @@ if (!fs.existsSync('./build/')){
 }
 
 // first we prepare all folders in the build folder
-const sourceFolders = glob.sync(__dirname + '/source/**/', {})
+const sourceFolders = glob.sync(getDirname() + '/source/**/', {})
 for (const sourceFolder of sourceFolders) {
 	// identifies the new folder to be created
 	const folderToCreate = getBuildFilePathFromSourceFilePath(sourceFolder)
@@ -44,7 +50,7 @@ for (const sourceFolder of sourceFolders) {
 }
 
 // second, we prepare all components
-const componentSourceFiles = glob.sync(__dirname + '/components/*.html', {})
+const componentSourceFiles = glob.sync(getDirname() + '/components/*.html', {})
 const components = {} // this is where the components will go
 for (const componentSourceFile of componentSourceFiles) {
 	const componentName = componentSourceFile
@@ -62,7 +68,7 @@ for (const componentSourceFile of componentSourceFiles) {
 }
 
 // third, we transpile html files and copy non-html files
-let sourceFiles = glob.sync(__dirname + '/source/**/*', { nodir: true })
+let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
 	// identifies the new folder to be created
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
