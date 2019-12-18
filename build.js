@@ -9,6 +9,9 @@ const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars') // for using handlebars
 const dirname = convertToWindowsReadablePath()
 
+// function that converts __dirname to windows readable path
+// this allows us later to manipulate files on windows device properly
+// no-more unknown bugs that prevent us from getting to the right directory
 function convertToWindowsReadablePath () {
 	return __dirname.replace(/\\/g, "/")
 }
