@@ -24,8 +24,16 @@ function getBuildFilePathFromSourceFilePath (sourceFilePath) {
 	)
 }
 
+function getFileExtension (filePath) {
+	return filePath.split('.').pop()
+}
+
 function isHtmlFile (filePath) {
-	return filePath.slice(-5) === '.html'
+	return getFileExtension(filePath) === 'html'
+}
+
+function isCssFile (filePath) {
+	return getFileExtension(filePath) === 'css'
 }
 
 // create the target build/ folder if it doesn't exist yet
@@ -51,7 +59,7 @@ for (const sourceFolder of sourceFolders) {
 
 // second, we prepare all components
 const componentSourceFiles = glob.sync(getDirname() + '/components/*.html', {})
-const components = {} // this is where the components will go
+const components = {} // creating components dictionary
 for (const componentSourceFile of componentSourceFiles) {
 	const componentName = componentSourceFile
 		.split('/').pop() // get the actual filename
@@ -67,7 +75,20 @@ for (const componentSourceFile of componentSourceFiles) {
 	)
 }
 
-// third, we transpile html files and copy non-html files
+// third, we compose all css files into a single one
+console.log('Beginning CSS composition into style.css')
+// find all css files inside css folder
+const cssSourceFiles = glob.sync(getDirname() + '/source/css/*.css', {})
+// turn them into strings
+const cssString = cssSourceFiles.map(file => fs.readFileSync(file).toString())
+// join all strings into one string
+const cssConcatenated = cssString.join('\n')
+// TODO: remove whitespace?
+// write concatenated string to css file
+fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
+console.log('Composed all CSS files into style.css')
+
+// finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
 	// identifies the new folder to be created
@@ -77,15 +98,19 @@ for (const sourceFile of sourceFiles) {
 		// this is where we transpile!
 
 		// we need a string, so we use .toString()
-		const source = fs.readFileSync(sourceFile).toString()
+		let workingFile = fs.readFileSync(sourceFile).toString()
+		let template
 
 		// this is motivated by their README file
 		// https://github.com/wycats/handlebars.js/#usage
-		const template = Handlebars.compile(source)
-		const result = template(components)
+
+		while (workingFile.indexOf('{{') !== -1) {
+			template = Handlebars.compile(workingFile)
+			workingFile = template(components)
+		}
 
 		// write output
-		fs.writeFileSync(fileToCreate, result)
+		fs.writeFileSync(fileToCreate, workingFile)
 
 		console.log('Transpiled file ', fileToCreate)
 	} else {
