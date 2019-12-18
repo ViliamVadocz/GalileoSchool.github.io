@@ -8,8 +8,10 @@ const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars') // for using handlebars
 
+// getter function for directory name
 function getDirname () {
-	return __dirname.replace(/\\/g,"/")
+	// replaces backwards slashes with forward slashes (Windows patch)
+	return __dirname.replace(/\\/g, '/')
 }
 
 // it's basically the old file with /source/ replaced with /build/
