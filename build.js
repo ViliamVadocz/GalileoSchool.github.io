@@ -13,8 +13,8 @@ function getBuildFilePathFromSourceFilePath (sourceFilePath) {
 	// note that replace only replaces the first occurence if the first argument
 	//  is a string
 	return sourceFilePath.replace(
-		__dirname + '/source/',
-		__dirname + '/build/'
+		__dirname.replace(/\\/g,"/") + '/source/',
+		__dirname.replace(/\\/g,"/") + '/build/'
 	)
 }
 
