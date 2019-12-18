@@ -1,7 +1,7 @@
 // this is the build script
 // it takes files from source/ and transpiles them into build/
 // it takes components from components/ and substitutes them into all .html
-//  files in source that use the handlbar syntax of {{ ... }}
+//  files in source that use the handlebar syntax of {{ ... }}
 // all non-html files are simply copied
 
 const fs = require('fs') // for manipulation of files
@@ -16,7 +16,7 @@ function getDirname () {
 
 // it's basically the old file with /source/ replaced with /build/
 function getBuildFilePathFromSourceFilePath (sourceFilePath) {
-	// note that replace only replaces the first occurence if the first argument
+	// note that replace only replaces the first occurrence if the first argument
 	//  is a string
 	return sourceFilePath.replace(
 		getDirname() + '/source/',
