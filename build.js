@@ -96,14 +96,13 @@ for (const sourceFile of sourceFiles) {
 
 	if (isHtmlFile(sourceFile)){
 		// this is where we transpile!
+		// https://github.com/wycats/handlebars.js/#usage
 
 		// we need a string, so we use .toString()
 		let workingFile = fs.readFileSync(sourceFile).toString()
 		let template
 
-		// this is motivated by their README file
-		// https://github.com/wycats/handlebars.js/#usage
-
+		// repeated Handlebar replacement to allow for nesting
 		while (workingFile.indexOf('{{') !== -1) {
 			template = Handlebars.compile(workingFile)
 			workingFile = template(components)
