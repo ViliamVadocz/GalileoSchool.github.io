@@ -48,12 +48,12 @@ for (const sourceFolder of sourceFolders) {
 	// identifies the new folder to be created
 	const folderToCreate = getBuildFilePathFromSourceFilePath(sourceFolder)
 
-	console.log('Preparing folder ', folderToCreate)
+	console.log('Preparing folder', folderToCreate)
 
 	// create if it doesn't exists yet
 	if (!fs.existsSync(folderToCreate)){
 		fs.mkdirSync(folderToCreate)
-		console.log('Created folder ', folderToCreate)
+		console.log('Created folder', folderToCreate)
 	}
 }
 
@@ -65,7 +65,7 @@ for (const componentSourceFile of componentSourceFiles) {
 		.split('/').pop() // get the actual filename
 		.replace(/\.html$/, '') // remove .html at the end
 
-	console.log('Found component ', componentName)
+	console.log('Found component', componentName)
 
 	// Handlebars escapes the '<' and '>' characters by default, so we need to
 	// explain that the strings are safe
@@ -111,11 +111,14 @@ for (const sourceFile of sourceFiles) {
 
 		// write output
 		fs.writeFileSync(fileToCreate, workingFile)
+		console.log('Transpiled file', fileToCreate)
 
-		console.log('Transpiled file ', fileToCreate)
+	} else if (isCssFile(sourceFile)) {
+		console.log('Skipped CSS file', sourceFile)
+
 	} else {
 		fs.copyFileSync(sourceFile, fileToCreate)
-		console.log('Copied file ', fileToCreate)
+		console.log('Copied file', fileToCreate)
 	}
 }
 
