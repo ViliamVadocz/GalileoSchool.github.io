@@ -61,18 +61,17 @@ function makeComponentDictionary(globPattern) {
 		// parse component
 		const fileString = fs.readFileSync(componentSourceFile, "utf8")
 		if (fileString.indexOf('TEMPORARY_OPENING_SIGNATURE ') == 0) {
-			console.log(componentName, 'identified as a compound component')
+			console.log(componentName, 'was identified as a compound component')
 
 			// split by sections
-			let sections = fileString.split('TEMPORARY_OPENING_SIGNATURE ')
-			sections.shift(); // removes the first element (which should be empty)
+			let sections = fileString.split('\r\nTEMPORARY_OPENING_SIGNATURE ')
+			sections[0] = sections[0].replace('TEMPORARY_OPENING_SIGNATURE ', '')
 			// seperate sections into name and content
 			sections = sections.map(section => section.split(' TEMPORARY_CLOSING_SIGNATURE\r\n'))
 			// add component sections to dictionary
 			let componentDict = {}
 			sections.map(section => componentDict[section[0]] = new Handlebars.SafeString(section[1]))
 			// add compound component to main component dictionary
-			console.log(componentDict)
 			components[componentName] = componentDict
 		}
 		else {
