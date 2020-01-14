@@ -39,7 +39,7 @@ function isCssFile (filePath) {
 function makeFolder (folderPath) {
 	// console.log('Preparing folder', folderPath)
 	// create if it doesn't exists yet
-	if (!fs.existsSync(folderPath)){
+	if (!fs.existsSync(folderPath)) {
 		fs.mkdirSync(folderPath)
 		console.log('Created folder', folderPath)
 	}
@@ -57,13 +57,32 @@ function makeComponentDictionary(globPattern) {
 			.replace(/\.html$/, '') // remove .html at the end
 	
 		console.log('Found component', componentName)
+
+		// parse component
+		const fileString = fs.readFileSync(componentSourceFile, "utf8")
+		if (fileString.indexOf('TEMPORARY_OPENING_SIGNATURE ') == 0) {
+			console.log(componentName, 'identified as a compound component')
+
+			// split by sections
+			let sections = fileString.split('TEMPORARY_OPENING_SIGNATURE ')
+			sections.shift(); // removes the first element (which should be empty)
+			// seperate sections into name and content
+			sections = sections.map(section => section.split(' TEMPORARY_CLOSING_SIGNATURE\r\n'))
+			// add component sections to dictionary
+			let componentDict = {}
+			sections.map(section => componentDict[section[0]] = new Handlebars.SafeString(section[1]))
+			// add compound component to main component dictionary
+			console.log(componentDict)
+			components[componentName] = componentDict
+		}
+		else {
+			// Handlebars escapes the '<' and '>' characters by default, so we need to
+			// explain that the strings are safe
+			// API reference: http://handlebarsjs.com/reference.html
+			components[componentName] = new Handlebars.SafeString(fileString)
+		}
 	
-		// Handlebars escapes the '<' and '>' characters by default, so we need to
-		// explain that the strings are safe
-		// API reference: http://handlebarsjs.com/reference.html
-		components[componentName] = new Handlebars.SafeString(
-			fs.readFileSync(componentSourceFile)
-		)
+		
 	}
 	return components
 }
@@ -141,7 +160,7 @@ for (const sourceFile of sourceFiles) {
 
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
-	if (isHtmlFile(sourceFile)){
+	if (isHtmlFile(sourceFile)) {
 
 		// we need a string, so we use .toString()
 		const startFile = fs.readFileSync(sourceFile).toString()
