@@ -36,44 +36,89 @@ function isCssFile (filePath) {
 	return getFileExtension(filePath) === 'css'
 }
 
-// create the target build/ folder if it doesn't exist yet
-if (!fs.existsSync('./build/')){
-	fs.mkdirSync('./build/')
-	console.log('Created build folder')
+function makeFolder (folderPath) {
+	// console.log('Preparing folder', folderPath)
+	// create if it doesn't exists yet
+	if (!fs.existsSync(folderPath)){
+		fs.mkdirSync(folderPath)
+		console.log('Created folder', folderPath)
+	}
 }
+
+// creates a dictionary of (filename: sourceFile) for Handlebars
+function makeComponentDictionary(globPattern) {
+	console.log('Looking for components matching: ' + globPattern)
+
+	const componentSourceFiles = glob.sync(globPattern)
+	const components = {}
+	for (const componentSourceFile of componentSourceFiles) {
+		const componentName = componentSourceFile
+			.split('/').pop() // get the actual filename
+			.replace(/\.html$/, '') // remove .html at the end
+	
+		console.log('Found component', componentName)
+	
+		// Handlebars escapes the '<' and '>' characters by default, so we need to
+		// explain that the strings are safe
+		// API reference: http://handlebarsjs.com/reference.html
+		components[componentName] = new Handlebars.SafeString(
+			fs.readFileSync(componentSourceFile)
+		)
+	}
+	return components
+}
+
+function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
+	// this is where we transpile!
+	// https://github.com/wycats/handlebars.js/#usage
+	let template
+
+	// repeated Handlebar replacement to allow for nesting
+	while (fileString.indexOf('{{') !== -1) {
+		template = Handlebars.compile(fileString)
+		fileString = template(components)
+	}
+	// write output to file
+	fs.writeFileSync(fileToCreate, fileString)
+	console.log('Transpiled file', fileToCreate)
+}
+
+// create the target build/ folder if it doesn't exist yet
+makeFolder('./build/')
+// create base html folders (en/sk versions)
+makeFolder(getDirname() + '/build/html/')
+makeFolder(getDirname() + '/build/html/en/')
+makeFolder(getDirname() + '/build/html/sk/')
 
 // first we prepare all folders in the build folder
 const sourceFolders = glob.sync(getDirname() + '/source/**/', {})
 for (const sourceFolder of sourceFolders) {
 	// identifies the new folder to be created
-	const folderToCreate = getBuildFilePathFromSourceFilePath(sourceFolder)
 
-	console.log('Preparing folder', folderToCreate)
+	// checks if it is in the html folder
+	if (sourceFolder.includes('/html/')) {
+		// create en and sk copies of the folder
+		const enFolderToCreate = sourceFolder.replace(
+			getDirname() + '/source/html/',
+			getDirname() + '/build/html/en/'
+		)
+		const skFolderToCreate = sourceFolder.replace(
+			getDirname() + '/source/html/',
+			getDirname() + '/build/html/sk/'
+		)
+		makeFolder(enFolderToCreate)
+		makeFolder(skFolderToCreate)
 
-	// create if it doesn't exists yet
-	if (!fs.existsSync(folderToCreate)){
-		fs.mkdirSync(folderToCreate)
-		console.log('Created folder', folderToCreate)
+	} else {
+		// otherwise just make one shared folder (e.g. css/ or js/)
+		const folderToCreate = getBuildFilePathFromSourceFilePath(sourceFolder)
+		makeFolder(folderToCreate)
 	}
 }
 
 // second, we prepare all components
-const componentSourceFiles = glob.sync(getDirname() + '/components/*.html', {})
-const components = {} // creating components dictionary
-for (const componentSourceFile of componentSourceFiles) {
-	const componentName = componentSourceFile
-		.split('/').pop() // get the actual filename
-		.replace(/\.html$/, '') // remove .html at the end
-
-	console.log('Found component', componentName)
-
-	// Handlebars escapes the '<' and '>' characters by default, so we need to
-	// explain that the strings are safe
-	// API reference: http://handlebarsjs.com/reference.html
-	components[componentName] = new Handlebars.SafeString(
-		fs.readFileSync(componentSourceFile)
-	)
-}
+const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
+const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
 
 // third, we compose all css files into a single one
 console.log('Beginning CSS composition into style.css')
@@ -91,26 +136,23 @@ console.log('Composed all CSS files into style.css')
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
-	// identifies the new folder to be created
+	// identifies the new file to be created
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
 
+	// note to future contributors: if you're going to use the html folder 
+	// for something other than .html files, use filePath.includes('/html/')
 	if (isHtmlFile(sourceFile)){
-		// this is where we transpile!
-		// https://github.com/wycats/handlebars.js/#usage
 
 		// we need a string, so we use .toString()
-		let workingFile = fs.readFileSync(sourceFile).toString()
-		let template
+		const startFile = fs.readFileSync(sourceFile).toString()
+		const enFileToCreate = fileToCreate.replace('/html/', '/html/en/')
+		const skFileToCreate = fileToCreate.replace('/html/', '/html/sk/')
 
-		// repeated Handlebar replacement to allow for nesting
-		while (workingFile.indexOf('{{') !== -1) {
-			template = Handlebars.compile(workingFile)
-			workingFile = template(components)
-		}
-
-		// write output
-		fs.writeFileSync(fileToCreate, workingFile)
-		console.log('Transpiled file', fileToCreate)
+		// The nested transpilation happens inside a function because
+		// it is done twice: once using english components, and then
+		// again using slovak components.
+		transpileUsingNestedHandlebars(startFile, enFileToCreate, enComponents)
+		transpileUsingNestedHandlebars(startFile, skFileToCreate, skComponents)
 
 	} else if (isCssFile(sourceFile)) {
 		console.log('Skipped CSS file', sourceFile)
