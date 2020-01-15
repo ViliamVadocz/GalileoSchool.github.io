@@ -21,8 +21,8 @@ const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars') // for using handlebars
 
 // syntax for compound components
-const OPENING_SIGNATURE = 'TEMPORARY_OPENING_SIGNATURE ' // notice the space on end
-const CLOSING_SIGNATURE = ' TEMPORARY_CLOSING_SIGNATURE' // notice the space in front
+const OPENING_SIGNATURE = ':^) ' // notice the space on end
+const CLOSING_SIGNATURE = ' :::' // notice the space in front
 
 // getter function for directory name
 function getDirname () {
