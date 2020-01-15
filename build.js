@@ -88,10 +88,10 @@ function makeComponentDictionary(globPattern) {
 			// add component sections to dictionary
 			let componentDict = {}
 			sections.forEach(
-                section => {
-                    componentDict[section[0]] = new Handlebars.SafeString(section[1])
-                }
-            )
+				section => {
+					componentDict[section[0]] = new Handlebars.SafeString(section[1])
+				}
+			)
 			// add compound component to main component dictionary
 			components[componentName] = componentDict
 		}
