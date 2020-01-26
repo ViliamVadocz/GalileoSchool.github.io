@@ -1,8 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
-
 /* In general, we are using vw (view-width) units = browser's content window width */
 /* vw units will scale with the content window -> responsive website */
 
+html {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* Prevent user selecting / highlighting on navbar  */
+nav {
+    user-select: none;
+}
 
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
 
@@ -26,8 +38,8 @@
 }
 
 .nav-desk li {
-    padding: 3vw;
-    padding-bottom: 1vw;
+    padding: 2.3vw;
+    /*padding-bottom: 1vw;*/
     text-decoration: none;
     color: white;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
@@ -63,18 +75,19 @@ div.nav-phone.lang > div {
     height: 8vw;
     margin: auto;
     padding: 1vw;
+    box-sizing: content-box;
 }
 
 .nav-phone .logo {
     width: auto;
+    margin-left: 2vw;
 }
 
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: calc(1.5rem - 3.5vw);
-    padding-left: 0;
-    font-size: 6.3vw;
+    margin-left: 2vw;
+    font-size: 5.9vw;
     text-transform: uppercase;
 }
 
@@ -152,13 +165,12 @@ div.nav-phone.lang > div {
 }
 
 .nav-phone .search-input:focus {
-    /* !important is a special ccs attribute that overrides any styles that could clash with it */
-    opacity: 1 !important;
+    opacity: 1;
 }
 
 /* Pre-made styling classes */
 .light-gray {
-    background-color: #e4e4e4 !important;
+    background-color: #e4e4e4;
 }
 
 .darker-gray {
@@ -178,13 +190,12 @@ div.nav-phone.lang > div {
 }
 
 div.square {
-    display: flex;
     width: 10vw;
     text-align: center;
 }
 
 .blur {
-    filter: blur(1px);
+    filter: blur(4px);
 }
 
 /* Styling elements using ID */
@@ -218,7 +229,7 @@ div.square {
 
 #nav-bar {
     height: 10vw;
-    width: 100vw;
+    width: 100%;
 }
 
 #menu-img, #search-img {
@@ -228,12 +239,12 @@ div.square {
 
 /* Logo + title CSS */
 .logo-open-nav {
-    margin-left: 3vw !important;
+    margin-left: 3vw;
 }
 
 .logo-img-open-nav {
-    margin-bottom: 0.2vw !important;
-    padding-bottom: 0.5vw !important;
+    margin-bottom: 0.2vw;
+    padding-bottom: 0.5vw;
 }
 
 .title-open-nav {
@@ -241,20 +252,15 @@ div.square {
 }
 
 .title-cont-open-nav {
-    margin-bottom: 0.5vw !important;
-    padding-bottom: 0.5vw !important;
+    margin-bottom: 0.5vw;
+    padding-bottom: 0.5vw;
 }
 
 /* The rest */
 .content {
     z-index: 0;
-    padding: 1em;
+    padding-top: 2px;
     text-align: center;
-}
-
-body {
-    padding: 0;
-    margin: 0;
 }
 
 .lang-text {
@@ -272,83 +278,171 @@ body {
 }
 
 .active-nav-btn {
-    background-color: #c40000 !important;
+    background-color: #c40000;
     transition: 0.5s ease;
 }
-
 
 /* Styles management based on screen width */
 
 /* Tablet style */
 /* Why 670? Trial and error - testing values from 540 to 800 (Common phone and tablet widths) */
+/* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
 @media screen and (min-width: 670px) {
-    .nav-desk > ul {
-        list-style-type: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        background-color: rgba(240, 240, 240, 0.89);
-        width: 100%;
-        left: 0;
-        margin-top: 0.5%;
-        padding: 0;
-        border-bottom: 2px solid black;
-        position: relative;
-        background-color: inherit;
-        width: 99%;
+
+    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
+        cursor: pointer;
     }
+
+    .content{
+        padding-top: 2px !important;
+    }
+
+    #nav-bar{
+        max-height: calc(670px*0.1);
+        max-width: 100vw;
+    }
+
+    div.right{
+        height: 52px !important;
+        margin: auto;
+        margin-bottom: 0;
+    }
+
+    div.nav-phone.search-drop.dropdown.square{
+        margin: auto;
+        margin-bottom: 0;
+    }
+
+    div.square {
+        width: calc(520px*0.1) !important;
+        height: 52px;
+    }
+
+    div.nav-phone.lang{
+        width: calc(520px*0.1);
+        height: 52px;
+    }
+
+    .lang-text{
+        font-size: calc(520px*0.056);
+    }
+
+    #menu-img, #search-img{
+        height: calc(520px*0.07);
+        width: calc(520px*0.07);
+    }
+
+    .nav-phone .logo > img{
+        width: calc(670px*0.08);
+        height: calc(670px*0.08);
+        padding: calc(670px*0.01);
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .nav-phone .title{
+        font-size: calc(670px*0.063);
+        margin-left: 0;
+    }
+
+    .nav-phone .language-dropdown-content{
+        top: calc(520px*0.1);
+        height: calc(520px*0.1);
+    }
+
+    .nav-phone .search-input{
+        height: calc(520px*0.0755);
+        font-size: calc(520px*0.035);
+        padding: calc(520px*0.01);
+        padding-top: 0;
+        padding-bottom: 0; 
+        border: 0.5px solid #dddddd;
+        height: 52px;
+    }
+
+    input.search-input{
+        width: calc(520px*0.4);
+        max-height: calc(520px*0.1);
+    }
+
+    .nav-phone .logo{
+        margin: auto;
+        margin-right: 0;
+    }
+
+    .nav-desk li{
+        padding: calc(520px*0.018);
+        font-size: calc(420px*0.045);
+    }
+
     #language:hover {
         background-color: #e7e7e7;
         cursor: pointer;
     }
+
+    .nav-desk > ul {
+        display: none;
+        margin: auto;
+        width: 240px;
+        padding: 30px;
+        padding-right: 8px;
+        padding-left: 8px;
+        right: 0;
+        height: 100vh;
+    }
+
     .nav-desk li:hover {
-        background-color: rgba(240, 240, 240, 0.89);
-        color: #4e4e4e;
-        cursor: pointer;
+        box-shadow: 0px 0px 33px -14px rgba(255,255,255,0.74);
+        transform: scale(1.03);
+        background-color: #c60000;
+        transition: linear 0.2s;
     }
-    .nav-desk li {
-        margin-bottom: 0 !important;
-        position: relative;
-        color: black;
-        border-right: 1px solid black;
-        width: 100%;
-        padding: 1.5vw;
-        font-size: 2.3vw;
-    }
+
     .nav-elem {
         display: flex;
         justify-content: center;
     }
+    
     li:last-child {
-        border-right: none !important;
+        border-right: none;
     }
-    .nav-desk {
-        display: block;
+
+    #nav-btn:hover{
+        cursor: pointer;
+        background-color: #c40000;
+        transition: ease 0.7s;
     }
-    .nav-phone {
-        display: none;
-    }
+
     #search:hover {
         background-color: #e9e9e9;
         cursor: pointer;
+        transition: ease 0.7s;
     }
 }
 
 /* Bigger screens */
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1100px) {
     .nav-desk li {
-        font-size: 1.5vw;
-        padding: 1.1vw;
+        font-size: calc(480px*0.045);
+        padding: calc(520px*0.0223);
     }
-    .nav-elem > iv {
+
+    .nav-desk > ul {
+        width: 308px;
+        padding: 14px;
+        padding-right: 0;
+        padding-left: 0;
+        height: 100vh;
+    }
+
+    .nav-elem > div {
         transform: translateY(0%);
     }
 }
 
-/* Desktop viewport */
-@media only screen and (min-width: 1500px) {
-    .nav-desk li {
-        font-size: 1.2vw;
-        padding: 0.8vw;
-    }
+/* Counteract _reboot.scss */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
