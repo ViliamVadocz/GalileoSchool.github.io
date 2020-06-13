@@ -1,119 +1,166 @@
-// Debug message to notify that the script has loaded.
-// To see it, find the console tab
-// console.log("Navigation JavaScript has loaded!");
+$(document).ready(function () {
+    const navbar = $("#nav-desk");
+    const primary_navigation = $("#main-nav");
+    const secondary_navigation = $("#sub-nav");
+    const phonebar = $('#nav-phone');
+    const phone_nav = $("#nav-phone-list");
+    const navBtn = $("#nav-btn");
+    const navBtnImgSrc = $("#menu-img").attr('src');
+    const navBtnExitImgSrc = getCloseImgUrl(navBtnImgSrc, 'close');
+    const searchBtnImgSrc = $("#search-img").attr('src');
+    const searchBtnExitImgSrc = getCloseImgUrl(searchBtnImgSrc, 'close_black');
+    const searchBtn = $("#search");
+    const langBtn = $("#langBtn");
 
-// Getting the menu button (top-right corner) by ID.
-const menuBtn = document.getElementById("nav-btn");
-const menuBtnImg = document.getElementById("menu-img");
+    var isSearching = false;
+    var viewport = new Viewport($(window).innerWidth(),$(window).innerHeight());
+    var isDesktop = viewport.isDesktop;
+    var isSubMenuOpen = false;
+    var isPhoneMenuOpen = false;
 
-// Throw an error if no menu button was found.
-if (menuBtnImg == null) {
-    alert("JavaScript could not find Menu Button");
-    throw new Error("Null value was found!");
-}
-
-// Collecting the menu itself.
-const NavMenuDesk = document.getElementById("nav-desk");
-const NavMenu = document.getElementById("navigation");
-
-let exit_img_src = "../../images/icons/close.png"
-
-// Gets default path to menu button image source.
-let original_attribute_src = menuBtnImg.getAttribute("src");
-
-// Adding an Event Listener for an action (click on a button) on my object.
-// A function is passed in that should be carried out when the event occurs.
-menuBtn.addEventListener("click", toggle_menu, false);
-
-// Listen for browser resize.
-window.addEventListener("resize", check_resize, false);
-
-
-// Functions below.
-
-/** 
- * @description Parse {url} string and return the last {len} characters
- * before the last slash (/) in the string.
- * @param {*} url Url that should be parsed.
- * @param {*} len length of part to be returned.
- */
-function Parse_Url(url, len) {
-    return url.substring(url.lastIndexOf("/") - len, url.lastIndexOf("/"));
-}
-
-/**
- * @description Hides and shows our navigation menu after we click the menu button.
- * It toggles (either adds or removes) a class that shows or hides our element.
- * It also adds a blur effect using JavaScript and its powerful events. 
- */
-function toggle_menu() {
-    // Switches the image sources.
-    // If showing menu icon, switch to exit icon.
-    if (menuBtnImg.getAttribute("src") == original_attribute_src)
-        menuBtnImg.setAttribute("src", exit_img_src);
-    // Otherwise, switch to menu icon.
-    else menuBtnImg.setAttribute("src", original_attribute_src);
-
-    // Add blur effect to background when menu is visible to shift focus on menu.
-    document.querySelector(".content").classList.toggle("blur");
-}
-
-/** 
- * @description Deals with issues that can occur when transitioning from
- * mobile viewport to desktop viewport. E.g. When you leave the menu open 
- * on the mobile viewport and move to the desktop viewport, the blur effect 
- * applied by toggle_menu would still be active.
- */
-function check_resize() {
-    // If in desktop viewport (width needs to be the same as in nav_style.css):
-    if (window.innerWidth >= 670 && window.innerWidth <= 1920 && document.querySelector(".content").classList.contains("blur") && document.querySelector(".left").classList.contains("red-wine")) {
-        resetPhoneMenu();
+    if(!isDesktop) {
+        navbar.addClass('no-display');
     }
-    else if (window.innerWidth < 670 && window.innerWidth > 150 && document.querySelector(".content").classList.contains("blur") && !document.querySelector(".left").classList.contains("red-wine")) {
-        resetDesktopMenu();
+
+    /*  Events Section  */
+
+    $(window).resize(function () { 
+        // Since Javascript has an automatic garbage collection we don't have to worry about disposing the old object
+        viewport = new Viewport($(window).innerWidth() + 17,$(window).innerHeight());
+        isDesktop = viewport.isDesktop;
+        if(isDesktop) {
+            resetToDesktop();
+        }
+        else {
+            resetToPhoneMenu();
+        }
+    });
+
+    navBtn.click(function (e) { 
+        if(isDesktop)
+            toggleDesktopMenu();
+        else
+            togglePhoneMenu();
+    });
+
+    searchBtn.click(function(e){
+        toggleSearch();
+    });
+
+
+    /*  Functions Section   */
+
+    function toggleDesktopMenu() {
+        isSubMenuOpen = !isSubMenuOpen;
+        if($('html').scrollTop() != 0)
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+        secondary_navigation.slideToggle();
+        toggleMenuBtnImg();
+        $('.content').toggleClass('blur');
+        $('#menu-overlay').toggleClass('no-display');
     }
-}
 
-/**
- * @description Resets all elements contributing to the phone navigation 
- * to their default state. This is done because check_resize essentially 
- * closes the navigation for us, but we also need to set all the attributes
- * directly.
- */
-function resetPhoneMenu() {
-    const left = document.querySelector(".left");
-    const language_drop = document.querySelector(".language-dropdown");
-    const search = document.querySelector(".search-drop");
-    const title_cont = document.querySelector(".title");
-    const logo_cont = document.querySelector(".logo");
-    const logo = document.getElementById("logo");
-    const title = document.getElementById("title");
+    function togglePhoneMenu(toggle = true) {
+        isPhoneMenuOpen = !isPhoneMenuOpen;
+        if(isSearching)
+            toggleSearch();
+        $('.left').toggleClass("red-wine");
+        $('#search').toggleClass("no-display");
+        langBtn.toggleClass("no-display");
+        $('.language-dropdown').toggleClass("no-display");
+        $('#title').toggleClass("title-open-nav");
+        $('#logo').toggleClass("logo-img-open-nav");
+        $('.logo').toggleClass("logo-open-nav");
+        $('.title').toggleClass("title-cont-open-nav");
+        $('nav').toggleClass("scroll-menu");
+        toggleMenuBtnImg();
+        phone_nav.slideToggle("fast");
+    }
 
-    console.log("Resetting the menu now!");
-    left.classList.remove("red-wine");
-    search.classList.remove("hidden");
-    language_drop.classList.remove("no-display");
-    title.classList.remove("title-open-nav");
-    logo.classList.remove("logo-img-open-nav");
-    logo_cont.classList.remove("logo-open-nav");
-    title_cont.classList.remove("title-cont-open-nav");
-}
+    function toggleSearch() {
+        $('li.logo').toggleClass('searching');
+        $('li.title').toggleClass('searching');
+        $('.search-container').toggleClass('close');
+        isSearching = !isSearching;
+        toggleSearchBtnImg();
+    }
 
-function resetDesktopMenu() {
-    const left = document.querySelector(".left");
-    const language_drop = document.querySelector(".language-dropdown");
-    const search = document.querySelector(".search-drop");
-    const title_cont = document.querySelector(".title");
-    const logo_cont = document.querySelector(".logo");
-    const logo = document.getElementById("logo");
-    const title = document.getElementById("title");
+    function resetToPhoneMenu() {
+        navbar.addClass('no-display');
+        if(isSubMenuOpen) {
+            secondary_navigation.slideUp();
+            isSubMenuOpen = !isSubMenuOpen;
+            toggleMenuBtnImg();
+        }
+    }
 
-    console.log("Resetting the menu now!");
-    left.classList.add("red-wine");
-    search.classList.add("hidden");
-    language_drop.classList.add("no-display");
-    title.classList.add("title-open-nav");
-    logo.classList.add("logo-img-open-nav");
-    logo_cont.classList.add("logo-open-nav");
-    title_cont.classList.add("title-cont-open-nav");
+    function resetToDesktop() {
+        navbar.removeClass('no-display');
+        if(isPhoneMenuOpen) {
+            phone_nav.slideUp();
+            $('.left').removeClass("red-wine");
+            $('#search').removeClass("no-display");
+            langBtn.removeClass("no-display");
+            $('.language-dropdown').removeClass("no-display");
+            $('#title').removeClass("title-open-nav");
+            $('#logo').removeClass("logo-img-open-nav");
+            $('.logo').removeClass("logo-open-nav");
+            $('.title').removeClass("title-cont-open-nav");
+            $('nav').removeClass("scroll-menu");
+            isPhoneMenuOpen = !isPhoneMenuOpen;
+            toggleMenuBtnImg();
+        }
+    }
+
+    function toggleMenuBtnImg() {
+        if(isSubMenuOpen || isPhoneMenuOpen)
+            $('#menu-img').attr('src', navBtnExitImgSrc);
+        else
+            $('#menu-img').attr('src', navBtnImgSrc);
+
+    }
+
+    function toggleSearchBtnImg() {
+        if(isSearching)
+            $("#search-img").attr('src', searchBtnExitImgSrc);
+        else
+            $("#search-img").attr('src', searchBtnImgSrc);
+    }
+
+    function getCloseImgUrl(url_of_img, name_of_file_no_extension) {
+        var image_name = url_of_img.split('/').pop();
+        return (url_of_img.replace(image_name, name_of_file_no_extension + '.png'));
+    }
+
+});
+
+class Viewport {
+
+    /** Viewport class constructor
+     * 
+     * @param {Number} width 
+     * @param {Number} height 
+     */
+    constructor(width,height) {
+        if(width >= 670 )
+            this._isDesktop = true;
+        else
+            this._isDesktop = false;
+
+        this.Width = width;
+        this.Height = height;
+    }
+
+    get isDesktop() {
+        return this._isDesktop;
+    }
+
+    get width() {
+        return this.Width;
+    }
+
+    get height() {
+        return this.Height;
+    }
+
 }

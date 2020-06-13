@@ -9,6 +9,7 @@ body {
     font-family: 'Times New Roman', Times, serif;
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* Prevent user selecting / highlighting on navbar  */
@@ -18,12 +19,7 @@ nav {
 
 /* Mobile viewport first, serves as a foundation that can be expanded using queries */
 
-/* Nav-Desk (Navigation-Desktop) */
-.nav-desk {
-    display: block;
-}
-
-.nav-desk > ul {
+.phone-menu > ul {
     display: none;
     margin: auto;
     width: 100vw;
@@ -31,31 +27,33 @@ nav {
     text-align: center;
     position: fixed;
     background-color: #a60000;
-    z-index: 1;
+    z-index: 2;
     padding: 8vw;
     /* Prevents ul items being shifted to the right */
-    padding-left: 0;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    top: auto !important;
 }
 
-.nav-desk li {
-    padding: 2.3vw;
+.phone-menu li {
+    padding: 2vw;
     /*padding-bottom: 1vw;*/
     text-decoration: none;
     color: white;
     font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
     font-size: 4.5vw;
-    z-index: 1;
+    z-index: 2;
 }
 
-.nav-desk .title {
+.phone-menu .title {
     padding: 4vw;
 }
 
-.nav-desk li:last-child {
+.phone-menu li:last-child {
     margin-bottom: 0;
 }
 
-.nav-desk li:hover {
+.phone-menu li:hover {
     background-color: #c40000;
     color: #ffffff;
     cursor: pointer;
@@ -70,25 +68,40 @@ div.nav-phone.lang > div {
     margin: auto;
 }
 
+.close {
+    width: 0 !important;
+    transition: 1.5s linear;
+}
+
+.close input {
+    padding: 0 !important;
+    transition: 1.5s linear;
+}
+
+#search_box, #search_box:focus {
+    text-transform: capitalize;
+}
+
 .nav-phone .logo > img {
     width: 8vw;
     height: 8vw;
     margin: auto;
     padding: 1vw;
     box-sizing: content-box;
+    transition: 2s linear;
 }
 
 .nav-phone .logo {
     width: auto;
-    margin-left: 2vw;
 }
 
 .nav-phone .title {
     width: auto;
     margin: auto;
-    margin-left: 2vw;
-    font-size: 5.9vw;
+    margin-left: 0;
+    font-size: 6vw;
     text-transform: uppercase;
+    transition: 2s linear;
 }
 
 .nav-phone {
@@ -150,27 +163,19 @@ div.nav-phone.lang > div {
     height: 100%;
 }
 
-.nav-phone .search-input {
-    width: 0vw;
-    height: 7.65vw;
-    display: none;
-    border: 0.2vw solid #cccccc;
-    background: #eeeeee;
-    padding: 1vw;
-    font-size: 3.5vw;
-    position: absolute;
-    z-index: 1;
-    /* Opacity controls transparency */
-    opacity: 0;
-}
-
-.nav-phone .search-input:focus {
-    opacity: 1;
-}
-
 /* Pre-made styling classes */
 .light-gray {
     background-color: #e4e4e4;
+}
+
+.red-wine {
+    background-color: #a60000 !important;
+}
+
+.scroll-menu {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
 }
 
 .darker-gray {
@@ -185,10 +190,6 @@ div.nav-phone.lang > div {
     display: none !important;
 }
 
-.red-wine {
-    background: #a60000;
-}
-
 div.square {
     width: 10vw;
     text-align: center;
@@ -196,19 +197,21 @@ div.square {
 
 .blur {
     filter: blur(4px);
+    transition: ease 1s;
 }
 
 /* Styling elements using ID */
 #logo-container {
-    width: 100%;
+    width: auto;
+    margin: auto;
 }
 
 #title {
     margin: auto;
     color: #a60000;
     font-weight: bold;
-    letter-spacing: -0.18vw;
-    transform: scale(1, 1.5);
+    letter-spacing: -0.26vw;
+    transform: scale(1, 1.6);
     cursor: default;
 }
 
@@ -233,7 +236,8 @@ div.square {
 }
 
 #menu-img, #search-img {
-    height: 7vw;
+    height: 5.5vw;
+    width: auto;
     margin: auto;
 }
 
@@ -259,8 +263,9 @@ div.square {
 /* The rest */
 .content {
     z-index: 0;
-    padding-top: 2px;
+    /*padding-top: 2px;*/
     text-align: center;
+    transition: ease .75s;
 }
 
 .lang-text {
@@ -282,6 +287,35 @@ div.square {
     transition: 0.5s ease;
 }
 
+.search-container {
+    max-height: 100%;
+    height: 100%;
+    width: 30vw;
+    transition: 1.5s linear;
+}
+
+.search-container > input {
+    max-height: 100%;
+    height: 100%;
+    border: none;
+    background-color: #eeeeee;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 3.7vw;
+}
+
+li.nav-phone.logo.searching img {
+    width: 5vw !important;
+    height: 5vw !important;
+    padding: 0 !important;
+    transition: all .55s linear;
+}
+
+li.nav-phone.title.searching {
+    font-size: 3.7vw;
+    transition: .55s linear !important;
+}
+
 /* Styles management based on screen width */
 
 /* Tablet style */
@@ -289,12 +323,77 @@ div.square {
 /* Warning: Any changes made to this "conditional" such as changing the min-width will have to be repeated in nav_jquery.js file in the function check_resize() */
 @media screen and (min-width: 670px) {
 
-    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text{
+    div.language-select-btn:hover, div.nav-phone.light-gray.lang.lang-text {
         cursor: pointer;
     }
 
-    .content{
-        padding-top: 2px !important;
+    #langBtn:hover, .lang-text:hover {
+        cursor: pointer;
+        background-color: #eeeeee;
+        transition: .1s linear;
+    }
+
+    #langBtn:active, .lang-text:active {
+        background-color: #bbbbbb;
+        transition: .1s linear;
+    }
+
+    #search {
+        width: calc(520px*0.1);
+        height: 52px;
+        margin: auto;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .search-container {
+        max-height: 52px;
+        margin-top: auto;
+        max-width: 180px;
+        width: 180px;
+        transition: 1.5s linear;
+    }
+
+    .search-container > input {
+        max-height: 52px;
+        height: 52px;
+        width: 100%;
+        font-size: 20px;
+    }
+
+    li.nav-phone.logo.searching img {
+        width: 51px !important;
+        height: auto !important;
+        transition: all 1s linear;
+    }
+
+    li.nav-phone.title.searching {
+        font-size: calc(670px*0.047);
+        transition: 1s linear;
+    }
+
+    .search-container > input:focus {
+        border: none !important;
+        outline: none !important;
+        -webkit-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
+        -moz-box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
+        box-shadow: inset 0px 0px 20px -8px rgba(139, 139, 139, 0.8);
+    }
+
+    .nav-desk {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+    }
+
+    #menu-overlay {
+        display: block;
+        position: fixed;
+        background-color: rgba(160, 160, 160, 0.377);
+        z-index: 1;
+        height: 100%;
+        width: 100%;
     }
 
     #nav-bar{
@@ -304,13 +403,7 @@ div.square {
 
     div.right{
         height: 52px !important;
-        margin: auto;
-        margin-bottom: 0;
-    }
-
-    div.nav-phone.search-drop.dropdown.square{
-        margin: auto;
-        margin-bottom: 0;
+        margin-top: auto;
     }
 
     div.square {
@@ -328,21 +421,23 @@ div.square {
     }
 
     #menu-img, #search-img{
-        height: calc(520px*0.07);
-        width: calc(520px*0.07);
+        height: calc(520px*0.055);
+        width: auto;
     }
 
-    .nav-phone .logo > img{
-        width: calc(670px*0.08);
-        height: calc(670px*0.08);
+    .nav-phone .logo > img {
+        height: 61px;
+        width: auto;
         padding: calc(670px*0.01);
-        padding-bottom: 0;
-        padding-top: 0;
+        padding-bottom: 2px;
+        padding-top: 2px;
+        transition: all 1s linear;
     }
 
     .nav-phone .title{
         font-size: calc(670px*0.063);
         margin-left: 0;
+        transition: 1s linear;
     }
 
     .nav-phone .language-dropdown-content{
@@ -380,20 +475,62 @@ div.square {
         cursor: pointer;
     }
 
-    .nav-desk > ul {
-        display: none;
+    #main-nav {
+        display: flex;
+        display: -ms-flexbox;
+        position: sticky;
+        top: 0;
+        flex-direction: row;
+        max-height: 52px;
+        -ms-flex-direction: row;
+        -ms-flex-align: center;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+        align-content: center;
         margin: auto;
-        width: 240px;
-        padding: 30px;
-        padding-right: 8px;
-        padding-left: 8px;
+        padding: 0;
+        z-index: 0;
+        font-size: 2vw;
+        transition: width 2s ease-in;
+        background-color: #a60000;
+        color: #ffffff;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+    }
+
+    #main-nav > li {
+        padding-right: calc(520px*0.025);
+        padding-left: calc(520px*0.025);
+        height: 52px;
+    }
+
+    #main-nav > li:hover,  #sub-nav > li:hover {
+        cursor: pointer;
+    }
+
+    #main-nav, #sub-nav {
+        user-select: none;
+    }
+
+    .nav-desk > ul:nth-child(2) {
+        display: none;
+        position: absolute;
         right: 0;
-        height: 100vh;
+        width:  250px;
+        height: auto;
+        margin: auto;
+        padding: 30px 0;
+        padding-top: 4px;
+        top: 48px;
+        font-family: 'Century Gothic', 'Futura', 'Didact Gothic', san-serif;
+        text-transform: uppercase;
+        background-color: #a60000;
+        color: #ffffff;
     }
 
     .nav-desk li:hover {
-        box-shadow: 0px 0px 33px -14px rgba(255,255,255,0.74);
-        transform: scale(1.03);
+        box-shadow: 0px 0px 33px -14px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
         background-color: #c60000;
         transition: linear 0.2s;
     }
@@ -420,29 +557,45 @@ div.square {
     }
 }
 
-/* Bigger screens */
-@media only screen and (min-width: 1100px) {
-    .nav-desk li {
-        font-size: calc(480px*0.045);
-        padding: calc(520px*0.0223);
-    }
-
-    .nav-desk > ul {
-        width: 308px;
-        padding: 14px;
-        padding-right: 0;
-        padding-left: 0;
-        height: 100vh;
-    }
-
-    .nav-elem > div {
-        transform: translateY(0%);
+@media screen and (max-width: 299px) {
+    .nav-phone .title {
+        font-size: 5vw !important;
     }
 }
 
-/* Counteract _reboot.scss */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@media only screen and (min-width: 780px) {
+
+    li.nav-phone.logo.searching img {
+        width: 61px !important;
+        height: auto !important;
+        transition: all 1s linear;
+    }
+
+    li.nav-phone.title.searching {
+        font-size: calc(670px*0.063);
+        transition: 1s linear;
+    }
+}
+
+/* Bigger screens */
+@media only screen and (min-width: 1100px) {
+    #main-nav > li {
+        padding-right: calc(520px*0.05);
+        padding-left: calc(520px*0.05);
+        }
+
+        li.nav-phone.logo.searching img {
+            width: 61px !important;
+            height: auto !important;
+            transition: all 1s linear;
+        }
+    
+        li.nav-phone.title.searching {
+            font-size: calc(670px*0.063);
+            transition: 1s linear;
+        }
+        
+    .nav-desk > ul:nth-child(2)  {
+        width: 300px;
+    }
 }

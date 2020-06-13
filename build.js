@@ -16,6 +16,86 @@
 // this acts as if you had multiple components, but put into one file
 //  and accessed using {{component.subcomponent}}
 
+/** Allows us to create an interview card object that has its own pre-made local functions to make our lives easier
+ * 
+ * @description Creating an instance of this class with the right parameters allows us to use its local functions. Example would be using the function getCode() to get a fully formatted html code of the card with the content from the parameters.
+ */
+class InterviewCard {
+
+	constructor(image, title, quickinfo, longdesc, pathToPhotosFolderFromWebRoot, student) {
+		this.image = image;
+		this.title = title;
+		this.student = student;
+		this.quickinfo = quickinfo;
+		this.longdesc = longdesc;
+		this.path = pathToPhotosFolderFromWebRoot;
+		this.photos = [];
+		this.hasPhotos = false;
+		
+		if (this.path == null)
+			return;
+		var succ = this._getPhotos();
+		this.hasPhotos = succ;
+		if(!succ)
+			console.error("Missing photos for " + this.student + " interview card");
+	}
+
+	/**
+	 * This is a private function that shouldn't be accessed from outside this class declaration, it is responsible for loading photos
+	 */
+	_getPhotos() {
+		try {
+			var files = fs.readdirSync(getDirname() + '/source/' + this.path);
+			if (this._countPictures(files) < 1)
+				return false;
+			
+			files.forEach(file => {
+				var ext = getFileExtension(file);
+				if (ext === "jpg" || ext === "png" || ext === "svg") {
+					var src = (this.path + file);
+					var name = file.split('.')[0];
+					var photo = { name: name, source: src };
+					this.photos.push(photo);
+				}
+			});
+			return true;
+		} catch (error) {
+			console.log(error);
+			return false;	
+		}
+	}
+
+	_countPictures(files) {
+		var count = 0;
+		files.forEach(file => {
+			if (file.includes(".jpg") || file.includes(".png") || file.includes(".svg"))
+				count++;
+		});
+		return count;
+	}
+
+	getCode() {
+		return `
+		<div id="${this.student.replace(' ', '_')}" class="card interview">
+			<img class="card-img-top" src="{fill_parents}${this.image}" alt="Photo">
+			<h4 class="card-title">${this.title}</h4>
+			<div class="card-body">
+				<h5 class="card-subtitle">${this.student}</h5>
+				<div class="card-text">
+					<p class="card-text">${this.quickinfo}</p>
+					<p class="card-text card-long-desc no-display">${this.longdesc}</p>
+				</div>
+				${this.hasPhotos ? `<h2 class="no-display">Gallery</h2>` : ``}
+				<ul class="card-images no-display">
+					${this.photos.map(photo =>`<li class="card-photo">
+						<img src="{fill_parents}${photo.source}" alt="${photo.name}">
+					</li>`).join('')}
+				</ul>
+			</div>
+		</div>`;
+	}
+}
+
 const fs = require('fs') // for manipulation of files
 const glob = require('glob') // for finding the right files
 const Handlebars = require('handlebars') // for using handlebars
@@ -52,18 +132,19 @@ function isCssFile (filePath) {
 	return getFileExtension(filePath) === 'css'
 }
 
+function isJsonFile(filePath) {
+	return getFileExtension(filePath) === 'json'
+}
+
 function makeFolder (folderPath) {
-	// console.log('Preparing folder', folderPath)
 	// create if it doesn't exists yet
 	if (!fs.existsSync(folderPath)) {
 		fs.mkdirSync(folderPath)
-		console.log('Created folder', folderPath)
 	}
 }
 
 // creates a dictionary of (filename: sourceFile) for Handlebars
 function makeComponentDictionary(globPattern) {
-	console.log('Looking for components matching: ' + globPattern)
 
 	const componentSourceFiles = glob.sync(globPattern)
 	const components = {}
@@ -73,12 +154,9 @@ function makeComponentDictionary(globPattern) {
 			.split('/').pop() // get the actual filename
 			.replace(/\.html$/, '') // remove .html at the end
 	
-		console.log('Found component', componentName)
-
 		// parse component (separate into subcomponents if it is compound)
 		const fileString = fs.readFileSync(componentSourceFile, "utf8")
 		if (fileString.indexOf(OPENING_SIGNATURE) == 0) {
-			console.log(componentName, 'was identified as a compound component')
 
 			// split by sections / subcomponents
 			let sections = fileString.split('\r\n' + OPENING_SIGNATURE)
@@ -119,8 +197,199 @@ function transpileUsingNestedHandlebars(fileString, fileToCreate, components) {
 		fileString = template(components)
 	}
 	// write output to file
+	fileString = autoFillParentFolders(fileToCreate, fileString);
+	fileString = languageFillPath(fileToCreate, fileString);
 	fs.writeFileSync(fileToCreate, fileString)
-	console.log('Transpiled file', fileToCreate)
+}
+
+/** Identifies and auto-fills parent folders
+ * 
+ * @param {String} filepath Path to file where the component is located
+ * @param {*} file_content Content of the file
+ * @returns {String} The string with filled placeholders
+ */
+function autoFillParentFolders(filepath, file_content) {
+	var path = filepath;
+	while(file_content.indexOf('{fill_parents}') != -1) {
+		file_content = file_content.replace('{fill_parents}', joinRepeatedString(getNumberOfParentFolders(path,'build') - 1,'../'));
+	}
+	while(file_content.indexOf('{fill_parents_html}') != -1) {
+		file_content = file_content.replace('{fill_parents_html}', joinRepeatedString(getNumberOfParentFolders(path,'html') - 1,'../'));
+	}
+	// console.log("Parent Folders AutoFill Complete On The File: " + path);
+	return file_content;
+}
+
+/** Returns string where language href(url) are replaced with appropriate links
+ * 
+ * @param {String} filepath Path to file where the component is located
+ * @param {*} file_content Content of the file
+ * @returns Returns the file content with transpiled components
+ */
+function languageFillPath(filepath, file_content) {
+	while(file_content.indexOf('{language_src}') != -1) {
+		file_content = file_content.replace('{language_src}', joinPathofFile(filepath));
+	}
+	return file_content;
+}
+
+/** Joins together the same string x number of times
+ * 
+ * @param {Number} multiplier Number how many times the pattern is to be repeated
+ * @param {String} pattern The pattern to be repeatedly joined 
+ * @returns {String} A joined string of the pattern
+ */
+function joinRepeatedString(multiplier, pattern) {
+	var string_builder = "";
+	for(var i = 0; (i + 1) <= multiplier; i++){
+		string_builder += pattern;
+	}
+	return string_builder;
+}
+
+/** Returns the relative url of the file in different language folder
+ * 
+ * @param {String} filepath Path to file where the component is located
+ * @returns {String} The relative url of the same file in different language
+ */
+function joinPathofFile(filepath) {
+	if(getNumberOfParentFolders(filepath) == 0)
+		return;
+	var string_builder = joinRepeatedString(getNumberOfParentFolders(filepath) - 1, '../');
+	var path_parts = filepath.split('html/')[1];
+	if(path_parts.indexOf('en/') != -1)
+		string_builder += path_parts.replace('en/','sk/');
+	else
+		string_builder += path_parts.replace('sk/', 'en/');
+	return string_builder;
+}
+
+/** Get the number of parent folders from the "Root" of HTML files
+ *  
+ * @param {String} path Path of the file 
+ * @param {String} root 
+ * @returns {Number} Number of parent folders from root 
+ */
+function getNumberOfParentFolders(path, root = "html") {
+	var parsed = path.split(root + '/');
+	var counter = 0;
+	if(parsed[1]) {
+		var parsed_even_more = parsed[1].split('/');
+		counter = parsed_even_more.length;
+	}
+	return counter;
+}
+
+/** Precompiles JSON parsed interview objects into a list elements used in navigation
+ * 
+ * @param {Array} objects JSON parsed interview objects
+ * @returns Compiled HTML code for modal navigation
+ */
+function transpileInterviewNavigation(objects) {
+	string_builder = ``;
+	objects.forEach(obj => {
+		string_builder += `<li id="${obj.Name.replace(" ", "_")}_menu" class="nav-elem"><div>${obj.Name}</div></li>\n`;		
+	});
+	return string_builder;
+}
+
+function getHTMLCodeFromJSON(json_object) {
+	var card_deck_start = `<div class="card-deck interview">`;
+	var card_deck_end = `</div>`;
+	var string_builder = ``;
+	var counter = 0;
+
+	json_object.map(obj => {
+		// I check how many cards are already in one deck and if it is the start of a new deck I manually add a card deck starting block
+		if (counter === 0)
+			string_builder += card_deck_start;
+		// Creating new instance of Interview Card so I can access it's HTML code
+		var card = new InterviewCard(obj.Image, obj.Title, obj.ShortInfo, obj.LongInfo, obj.PhotosFolderPath, obj.Name);
+		string_builder += card.getCode();
+		counter++;
+		// Here I state how many cards should be in one card deck or you can call it card row
+		if (counter === 3) {
+			string_builder += card_deck_end;
+			counter = 0;
+		}
+	});
+	// Here I check if the last card added to row was 3rd in the row if not I have to manually add card deck end block
+	if (counter !== 0) {
+		for (i = 0; i < (3 - counter); i++) {
+			string_builder += `
+			<div class="card interview hidden"></div>`;
+		}
+		string_builder += card_deck_end;
+		counter = 0;
+	}
+	return string_builder;
+}
+
+function writeInterviewCardHTMLCodeToFile(language, HTML, files) {
+	if (language == "english" || language == "en" || language == "En" || language == "EN" || language == "English") language = "en";
+	if (language == "slovak" || language == "sk" || language == "SK" || language == "Sk" || language == "Slovak") language = "sk";
+	var file = files.find(obj => {
+		return obj.language === language;
+	});
+	// Writing the final compiled HTML code into file
+	fs.writeFileSync(file.src, HTML);
+}
+
+function transpileJsonInterviewCardsToHTML(enJson, skJson) {
+	try {
+		// Declaration of necessary variables
+		var file;
+		var dir = getDirname() + "/components/";
+		var languages = [];
+		var files = [];
+
+		// Checking if there is Slovak and English version of the interviews
+		if (!enJson || enJson == "") { file = skJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); }
+		else if (!skJson || skJson == "") { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('en'); }
+		else { file = enJson.split('/').pop().split('.')[0] + ".html"; languages.push('sk'); languages.push('en'); }
+
+		// Creating new object for each language and adding it to my files[] array 
+		languages.forEach(language => {
+			var object = {
+				language: language,
+				src: dir + language + "/" + file
+			};
+			files.push(object);
+		});
+
+		// Checks performed
+		if (languages.includes('en'))
+			var object_en = JSON.parse(fs.readFileSync(enJson));
+		if (languages.includes('sk'))
+			var object_sk = JSON.parse(fs.readFileSync(skJson));
+
+		// Compiling interview modal navigation
+		if (object_en)
+			fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(object_en));
+		else if (object_sk)
+			fs.writeFileSync(getDirname() + "/components/" + "interview_navigation.html", transpileInterviewNavigation(object_sk));
+		else
+			throw new Error("[" + transpileJsonInterviewCardsToHTML.name + "] > NullReferenceException: Object reference not set to an instance of an object");
+
+		// Pre-compiling the English version of the interview cards
+		if (object_en) {
+			var HTML = getHTMLCodeFromJSON(object_en);
+			writeInterviewCardHTMLCodeToFile("en", HTML, files);
+		}
+
+		// Pre-compiling the Slovak version of the interview cards
+		if (object_sk) {
+			var HTML = getHTMLCodeFromJSON(object_sk);
+			writeInterviewCardHTMLCodeToFile("sk", HTML, files);
+		}
+
+		// If everything goes as it should we return true to indicate that the process was successful
+		return true;
+	} catch (err) {
+		// We use this catch to determine whether the transpilation was successful or not. The function itself returns a boolean that we later check for.
+		console.error("There was an internal error while transpiling Interview Cards: " + err);
+		return false;
+	}
 }
 
 // first we prepare all the folders in the build folder
@@ -156,10 +425,14 @@ for (const sourceFolder of sourceFolders) {
 	}
 }
 
+const enJson = glob.sync(getDirname() + '/components/en/interview_cards.json', {}).toString();
+const skJson = glob.sync(getDirname() + '/components/sk/interview_cards.json', {}).toString();
+var success = transpileJsonInterviewCardsToHTML(enJson, skJson);
+if (!success)
+	return;
 // second, we prepare all components
 const enComponents = makeComponentDictionary(getDirname() + '/components/{*,en/*}.html')
 const skComponents = makeComponentDictionary(getDirname() + '/components/{*,sk/*}.html')
-
 // third, we compose all css files into a single one
 console.log('Beginning CSS composition into style.css')
 // find all css files inside css folder
@@ -172,13 +445,12 @@ const cssConcatenated = cssString.join('\n')
 // write concatenated string to css file
 fs.writeFileSync(getDirname() + '/build/css/style.css', cssConcatenated)
 console.log('Composed all CSS files into style.css')
-
 // finally, we transpile html files and copy non-html files
 let sourceFiles = glob.sync(getDirname() + '/source/**/*', { nodir: true })
 for (const sourceFile of sourceFiles) {
 	// identifies the new file to be created
+	
 	const fileToCreate = getBuildFilePathFromSourceFilePath(sourceFile)
-
 	// note to future contributors: if you're going to use the html folder 
 	// for something other than .html files, use filePath.includes('/html/')
 	if (isHtmlFile(sourceFile)) {
@@ -203,4 +475,4 @@ for (const sourceFile of sourceFiles) {
 	}
 }
 
-console.log('Success! Files built in build/')
+console.log('Success! Files built in build/');
